@@ -1,0 +1,15 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "sencha-extjs": {}
+    },
+    "packages": {
+      "sencha-extjs": {
+        "git": "https://github.com/manduks/meteor-sencha-extjs.git",
+        "tag": "v0.0.1",
+        "commit": "87d0efdf94b5e1657fd4a6e11412da6965d91d10"
+      }
+    }
+  }
+}
