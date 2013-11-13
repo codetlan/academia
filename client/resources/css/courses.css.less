@@ -1,28 +1,49 @@
 .courses-list-item{
 	padding: 8px;
-	margin: 30px 0px 0px 30px;
+	margin: 20px 0px 0px 30px;
 	float: left;
-	background-color: #FFF;	
+	background-color: #3498DB;
 	div{
 		img{
-			width: 350px;
-			height: 350px;
+			width: 250px;
+			height: 250px;
 		}		
 	}
 	.courses-list-item-name{
-		color: #E26866;
-		font-size: 20px;
+		color: #FFF;
+		font-size: 18px;
+		padding: 10px 0 10px 0px;
 	}
 	.courses-list-item-social{
-		background-color: #CCCCCC;
+		padding: 10px 0 10px 0px;
+		margin-left: -8px;
+		div{
+			float:left;
+			width: 32%;
+			// border: #000 solid 1px;			
+			text-align: center;
+			color:#FFF;
+			font-size: 18px;
+		}
 	}
-	border:1px solid #FFFFFF;
-	border-bottom:5px solid #CCCCCC;
+	border-bottom:5px solid #2980B9;
 }
 .data-view-courses-list{
-	background-color: #F5F5F5;
+	background-color: #FFF;
 	padding-bottom: 20px;
+	background-image: url('../../../images/square.gif');
+	background-repeat:repeat;
 }
 .courses-list-item-over{
-    border-color: #E26866;
+	border-bottom:5px solid #27AE60;
+	background-color: #2ECC71;
+	cursor: pointer;
+	.courses-list-item-name{
+		color: #FFF;
+	}
+	.courses-list-item-social{
+		div{
+			color:#FFF;
+		}
+	}
 }

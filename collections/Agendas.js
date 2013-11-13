@@ -1,0 +1,1 @@
+Agendas = new Meteor.Collection("agendas");

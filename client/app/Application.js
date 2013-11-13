@@ -12,6 +12,7 @@ Ext.define('Cursos.Application', {
     ],
 
     stores: [
-        // TODO: add stores here
+        'Courses',
+        'Agendas'
     ]
 });

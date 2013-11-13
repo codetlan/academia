@@ -6,6 +6,9 @@
 Ext.define('Cursos.model.Course', {
    extend: 'Ext.data.Model',
    fields:[{
+         name:'_id',
+         type:'string'
+      },{
          name:'title',
          type:'string'
       },{
