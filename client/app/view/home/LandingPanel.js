@@ -1,7 +1,7 @@
 /**
  * @class Cursos.view.home.LandingPanel
  * @extends Ext.Panel
- * Description
+ * Este panel muestra el landing de la aplicacion
  */
 Ext.define('Cursos.view.home.LandingPanel', {
     extend: 'Ext.Panel',
@@ -29,7 +29,8 @@ Ext.define('Cursos.view.home.LandingPanel', {
         xtype: 'coursepanel',
         collapsible: true,
         collapsed: true,
-        region: 'east'
+        region: 'east',
+        width: 600
     }],
 
     dockedItems: [{

@@ -10,8 +10,7 @@ Ext.define('Cursos.view.courses.CoursePanel', {
         // 'Ext.ux.desktop.Video',
         'Cursos.view.courses.CourseAgendaGrid'
     ],
-    title: 'Course',
-    width: 600,
+    title: 'Course',    
     autoScroll: true,
     items:[
     	{

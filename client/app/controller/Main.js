@@ -11,24 +11,34 @@ Ext.define('Cursos.controller.Main', {
 
 
     init: function() {
-        this.control({
+        var me = this;
+
+        me.control({
             'landingpanel #btnLoginWithGoogle': {
-                click: this.onLoginUser
+                click: me.onLoginUser
             },
             'panel #btnLogout': {
-                click: this.onLogOutUser
+                click: me.onLogOutUser
             },
             'landingpanel courseslist': {
-                itemclick: this.onCourseItemClick
+                itemclick: me.onCourseItemClick
             }
         });
 
-        this.initStores();
+        me.initStores();
+
+        me.waitForMeteor(function() {
+            if (Meteor.userId()) {
+                me.getMain().layout.setActiveItem(1);
+            }
+        });
     },
 
     onCourseItemClick: function(view, record, item, index, e) {
         var me = this,
-            data = Agendas.find({courseId:record.get('_id')}).fetch();
+            data = Agendas.find({
+                courseId: record.get('_id')
+            }).fetch();
         me.getCoursePanel().expand();
         me.getCoursePanel().setTitle(record.get('title'));
         me.getStore('Agendas').loadData(data);
@@ -36,10 +46,9 @@ Ext.define('Cursos.controller.Main', {
 
     initStores: function() {
         var me = this;
-
-        setTimeout(function() {
+        me.waitForMeteor(function() {
             me.getStore('Courses').loadData(Courses.find({}).fetch());
-        }, 500);
+        });
 
     },
     onLoginUser: function() {
@@ -47,7 +56,6 @@ Ext.define('Cursos.controller.Main', {
         Meteor.loginWithGoogle(function(err) {
             if (err) {
                 Ext.Msg.alert('Error', 'No pudimos iniciar sesión intentalo de nuevo :)');
-                // console.log(err);
             } else {
                 me.getMain().layout.setActiveItem(1);
             }
@@ -63,5 +71,13 @@ Ext.define('Cursos.controller.Main', {
                 me.getMain().layout.setActiveItem(0);
             }
         })
+    },
+    waitForMeteor: function(fn) {
+        var body = Ext.getBody();
+        body.mask('Actualizando ...');
+        setTimeout(function() {
+            fn();
+            body.unmask();
+        }, 500);
     }
 });
