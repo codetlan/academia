@@ -13,6 +13,7 @@ Ext.define('Cursos.Application', {
 
     stores: [
         'Courses',
-        'Agendas'
+        'Agendas',
+        'MenuItems'
     ]
 });

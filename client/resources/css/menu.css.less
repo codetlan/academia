@@ -1,7 +1,19 @@
+// estilos del menu MenuPanel.js
+
+@dark: #1D1E20;
+@blue: #0B80D0;
+@blue-border: #0E90DC;
+@dark-border:  #3D444C;
+
+.cursos-menu-panel{
+	background-color: @dark;
+}
+
+// estilos del menu UserMenuList.js
 .cursos-menu-item{
 	height: 60px;
-	border-bottom: 2px solid #0E90DC;	
-	background-color: #0B80D0;
+	border-bottom: 2px solid @blue-border;	
+	background-color: @blue;
 	color: #FFE;
 	padding: 10px;
 	font-size: 16px;
@@ -30,13 +42,16 @@
 		}
 	}
 }
-.cursos-menu-panel{
-
+.cursos-menu-item-over{
+	cursor: pointer;
+	background-color: (@blue * 0.9);
 }
+
+// estilos del menu ProfileContainer.js
 .cursos-menu-user-container{
-	background-color: #0B80D0;
-	border-bottom: 2px solid #0E90DC;
-	border-top: 2px solid #0E90DC;
+	background-color: @blue;
+	border-bottom: 2px solid @blue-border;
+	border-top: 2px solid @blue-border;
 	color: #FFE;
 	.cursos-user-profile{
 		.cursos-user-avatar{
@@ -46,7 +61,7 @@
 				width: 40px;
 				margin: 5px;
 				border-radius: 48px;
-				border: 1px solid #0E90DC;
+				border: 1px solid @blue-border;
 			}
 		}
 
@@ -64,4 +79,52 @@
 		}
 		
 	}
+}
+
+
+// estilos del menu SocialMenuList.js
+.cursos-social-menu-title{
+	height: 60px;
+	background-color: @dark;
+	color: #FFF;
+	padding: 20px;
+	font-size: 20px;
+	text-transform: uppercase;
+}
+.cursos-social-menu-item{
+	height: 60px;
+	border-top: 1px solid @dark-border;	
+	border-bottom: 1px solid @dark-border;	
+	background-color: @dark;
+	color: #A0A5AB;
+	padding: 10px;
+	font-size: 18px;
+	div{
+		padding: 10px;
+	}
+	i{
+		color: @dark-border;
+		margin-right: 15px;
+		font-size: 18px;
+	}
+	.badge{
+		float: right;
+		border-radius: 24px;
+		width: 25px;
+		height: 25px;
+		background-color: #303338;	
+		margin-top: -32px;
+		span{
+			color: #FFE;
+			position: absolute;
+			font-size: 14px;
+			margin-left: -1px;
+			margin-top: -5px;
+			text-align: center;
+		}
+	}
+}
+.cursos-social-menu-item-over{
+	background-color: (@dark * 0.5);
+	cursor: pointer;
 }

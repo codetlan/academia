@@ -17,16 +17,15 @@ Ext.define('Cursos.controller.Main', {
             'landingpanel #btnLoginWithGoogle': {
                 click: me.onLoginUser
             },
-            'panel #btnLogout': {
-                click: me.onLogOutUser
-            },
             'landingpanel courseslist': {
                 itemclick: me.onCourseItemClick
+            },
+            'mainpanel menupanel socialmenulist':{
+                itemclick: me.onSocialMenuItemClick
             }
         });
 
         me.initStores();
-
         me.waitForMeteor(function() {
             if (Meteor.userId()) {
                 me.getMain().layout.setActiveItem(1);
@@ -34,6 +33,15 @@ Ext.define('Cursos.controller.Main', {
         });
     },
 
+    onSocialMenuItemClick:function (view, record, item, index, e) {        
+        var me = this;
+        switch(record.get('icon')){
+            case 'icon-logout':
+                me.onLogOutUser();
+            break;
+            default:break;
+        }
+    },
     onCourseItemClick: function(view, record, item, index, e) {
         var me = this,
             data = Agendas.find({

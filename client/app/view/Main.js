@@ -5,26 +5,6 @@ Ext.define('Cursos.view.Main', {
     requires: [
         // 'Cursos.view.MenuPanel'
     ],
-
-    dockedItems: [{
-        xtype: 'toolbar',
-        dock: 'top',
-        ui: 'footer',
-        items: [
-            // { xtype: 'component', flex: 1 },
-            '->', {
-                xtype: 'button',
-                // text: '  ',
-                // glyph: 45,
-                iconCls: 'icon-help'
-            }, {
-                xtype: 'button',
-                text: 'Salir',
-                itemId: 'btnLogout'
-            }
-        ]
-    }],
-
     layout: 'border',
     defaults:{
         padding:3,
