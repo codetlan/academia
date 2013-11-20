@@ -11,7 +11,7 @@ Ext.define('Cursos.view.MenuPanel', {
         // 'Cursos.view.MenuList'
     ],
 
-    title: 'Armando Gonzalez',
+    title: 'Menu',
     collapsible: true,
     region: 'west',
     frame:false,

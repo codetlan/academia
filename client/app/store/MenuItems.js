@@ -9,18 +9,5 @@ Ext.define('Cursos.store.MenuItems', {
 		'Cursos.model.MenuItem'
 	],
 	model: 'Cursos.model.MenuItem',
-	alias: 'store.menuitems',
-	data: [{
-		option: 'Mensajes',
-		icon: 'icon-mail',
-		badge: 8
-	}, {
-		option: 'Notificaciones',
-		icon: 'icon-bell',
-		badge: 9
-	}, {
-		option: 'Mis cursos',
-		icon: 'icon-ticket',
-		badge: 9
-	}]
+	alias: 'store.menuitems'	
 });

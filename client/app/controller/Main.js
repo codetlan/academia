@@ -20,27 +20,48 @@ Ext.define('Cursos.controller.Main', {
             'landingpanel courseslist': {
                 itemclick: me.onCourseItemClick
             },
-            'mainpanel menupanel socialmenulist':{
+            'mainpanel menupanel socialmenulist': {
                 itemclick: me.onSocialMenuItemClick
+            },
+            'mainpanel menupanel usermenulist': {
+                itemclick: me.onUserMenuItemClick
             }
         });
-
-        me.initStores();
         me.waitForMeteor(function() {
             if (Meteor.userId()) {
                 me.getMain().layout.setActiveItem(1);
+                me.onShowAdmin();
             }
         });
+        
     },
 
-    onSocialMenuItemClick:function (view, record, item, index, e) {        
+    onSocialMenuItemClick: function(view, record, item, index, e) {
         var me = this;
-        switch(record.get('icon')){
+        switch (record.get('icon')) {
             case 'icon-logout':
                 me.onLogOutUser();
-            break;
-            default:break;
+                break;
+            case 'icon-cog-alt':
+                me.onShowAdmin();
+                break;
+            default:
+                break;
         }
+    },
+    onUserMenuItemClick: function(view, record, item, index, e) {
+        var me = this;
+        switch (record.get('icon')) {
+            case 'icon-cog-alt':
+                me.onShowAdmin();
+                break;
+            default:
+                break;
+        }
+    },
+    onShowAdmin: function() {
+        var win = Ext.create('Cursos.view.admin.AdminWindow');
+        win.show();
     },
     onCourseItemClick: function(view, record, item, index, e) {
         var me = this,
@@ -50,14 +71,6 @@ Ext.define('Cursos.controller.Main', {
         me.getCoursePanel().expand();
         me.getCoursePanel().setTitle(record.get('title'));
         me.getStore('Agendas').loadData(data);
-    },
-
-    initStores: function() {
-        var me = this;
-        me.waitForMeteor(function() {
-            me.getStore('Courses').loadData(Courses.find({}).fetch());
-        });
-
     },
     onLoginUser: function() {
         var me = this;

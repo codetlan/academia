@@ -1,11 +1,18 @@
+@dark: #1D1E20;
+@blue: #0B80D0;
+@blue-border: #0E90DC;
+@dark-border:  #3D444C;
+@dark-background:#2C2F34;
+
 .courses-list-item{
 	padding: 8px;
 	margin: 20px 0px 0px 30px;
 	float: left;
-	background-color: #3498DB;
+	background-color: @blue;
+	// background-color: @dark-border;
 	div{
 		img{
-			width: 250px;
+			width: 270px;
 			height: 250px;
 		}		
 	}
@@ -25,17 +32,17 @@
 			font-size: 18px;
 		}
 	}
-	border-bottom:5px solid #2980B9;
+	// border-bottom:5px solid #2980B9;
 }
 .data-view-courses-list{
-	background-color: #FFF;
+	background-color: @dark;
 	padding-bottom: 20px;
 	background-image: url('../../../images/square.gif');
 	background-repeat:repeat;
 }
 .courses-list-item-over{
-	border-bottom:5px solid #27AE60;
-	background-color: #2ECC71;
+	// border-bottom:5px solid #27AE60;
+	background-color: @blue-border;
 	cursor: pointer;
 	.courses-list-item-name{
 		color: #FFF;
@@ -44,5 +51,34 @@
 		div{
 			color:#FFF;
 		}
+	}
+}
+
+//estilos de CourseCategoriesList.js
+.cursos-courses-list-menu-item{
+	height: 60px;
+	border-top: 1px solid @dark-border;	
+	border-bottom: 1px solid @dark-border;	
+	background-color: @dark;
+	color: #A0A5AB;
+	padding: 10px;
+	font-size: 18px;
+	div{
+		padding: 10px;
+	}
+	i{
+		color: @dark-border;
+		margin-right: 15px;
+		font-size: 18px;
+	}
+}
+.cursos-courses-list-menu-item-over{
+	background-color: @blue;
+	color: #FFF;
+	cursor: pointer;
+	border-top: 1px solid @blue-border;	
+	border-bottom: 1px solid @blue-border;
+	i{
+		color: #FFF;
 	}
 }

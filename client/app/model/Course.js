@@ -5,14 +5,20 @@
  */
 Ext.define('Cursos.model.Course', {
    extend: 'Ext.data.Model',
-   fields:[{
-         name:'_id',
-         type:'string'
-      },{
-         name:'title',
-         type:'string'
-      },{
-   		name:'description',
-   		type:'string'
-   	}]
+   fields: [{
+      name: '_id',
+      type: 'string'
+   }, {
+      name: 'title',
+      type: 'string'
+   }, {
+      name: 'description',
+      type: 'string'
+   }, {
+      name: 'price',
+      type: 'float'
+   }, {
+      name: 'image',
+      type: 'string'
+   }]
 });

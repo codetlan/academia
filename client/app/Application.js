@@ -8,7 +8,8 @@ Ext.define('Cursos.Application', {
     ],
 
     controllers: [
-        'Main'
+        'Main',
+        'Admin'
     ],
 
     stores: [

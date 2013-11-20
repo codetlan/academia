@@ -8,7 +8,7 @@ Ext.define('Cursos.view.Main', {
     layout: 'border',
     defaults:{
         padding:3,
-        // split: true
+        split: true
     },
     items: [{
         xtype: 'menupanel',
@@ -26,7 +26,10 @@ Ext.define('Cursos.view.Main', {
         collapsible: true,
         collapsed: true,
         width: 400,
+        maxwidth:800,
         region:'east',
-        html:'<iframe width="100%" height="100%" src="http://jsfiddle.net/senchatips/mwRkj/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>'
+        // html:'<iframe width="100%" height="100%" src="http://jsfiddle.net/senchatips/mwRkj/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>'
+        html:'<iframe width="100%" height="100%" src="http://www.senchafiddle.com/full/!n5Y0X/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>',
+        html:'<iframe width="100%" height="100%" src="https://fiddle.sencha.com" allowfullscreen="allowfullscreen" frameborder="0"></iframe>'
     }]
 });

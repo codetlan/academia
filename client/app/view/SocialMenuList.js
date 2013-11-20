@@ -22,6 +22,9 @@ Ext.define('Cursos.view.SocialMenuList', {
 	store: {
 		type:'menuitems',
 		data: [{
+			option: 'Administración',
+			icon: 'icon-cog-alt'
+		},{
 			option: 'Cursos',
 			icon: 'icon-video'
 		}, {
