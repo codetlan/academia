@@ -11,7 +11,7 @@ Ext.define('Cursos.view.admin.courses.AdminCoursesPanel', {
 
 	tbar: ['->',{
 		text: 'Ver Temario',
-		itemId:'addAgendaToCourseBtn'
+		itemId:'showAgendaOfCourseBtn'
 	}, {
 		text: 'Eliminar',
 		itemId:'deleteCourseBtn'

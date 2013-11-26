@@ -10,7 +10,7 @@ Accounts.onCreateUser(function (options, user) {
         user.profile.picture = user.profile.picture || 'images/profile/default_picture.png';
 
         if(admins.indexOf(user.profile.email) !== -1){
-            user.profile.rol = "admin";
+            user.profile.role = "admin";
         }
     }
     return user;

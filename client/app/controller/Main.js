@@ -7,6 +7,9 @@ Ext.define('Cursos.controller.Main', {
     }, {
         ref: 'coursePanel',
         selector: 'coursepanel'
+    }, {
+        ref: 'socialMenulist',
+        selector: 'menupanel socialmenulist'
     }],
 
 
@@ -30,10 +33,17 @@ Ext.define('Cursos.controller.Main', {
         me.waitForMeteor(function() {
             if (Meteor.userId()) {
                 me.getMain().layout.setActiveItem(1);
-                me.onShowAdmin();
+                if (Meteor.user().profile.role === "admin") {
+                    me.onShowAdmin();
+                    var adminMenu = Ext.create('Cursos.model.MenuItem', {
+                        option: 'Administración',
+                        icon: 'icon-cog-alt'
+                    });
+                    me.getSocialMenulist().getStore().insert(0, adminMenu);
+                }
             }
         });
-        
+
     },
 
     onSocialMenuItemClick: function(view, record, item, index, e) {
@@ -86,12 +96,11 @@ Ext.define('Cursos.controller.Main', {
         var me = this;
         Meteor.logout(function(err) {
             if (err) {
-                // console.log(err);
                 Ext.Msg.alert('Error', 'No pudimos cerrar sesión intentalo de nuevo :)');
             } else {
                 me.getMain().layout.setActiveItem(0);
             }
-        })
+        });
     },
     waitForMeteor: function(fn) {
         var body = Ext.getBody();

@@ -22,7 +22,6 @@ Ext.define('Cursos.view.MenuPanel', {
     }, {
         xtype: 'usermenulist'
     },{
-        xtype:'socialmenulist',
-        itemId:'social'
+        xtype:'socialmenulist'
     }]
 });

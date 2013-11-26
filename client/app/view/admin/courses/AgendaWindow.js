@@ -7,19 +7,32 @@ Ext.define('Cursos.view.admin.AgendaWindow', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.agendawindow',
 
-	width: 800,
+	width: 900,
 	height: 500,
 	title: 'Temario del curso',
-	layout: 'fit',
+	layout: 'border',
+	defaults: {
+		padding: 1,
+		autoScroll: true,
+		title: ''
+	},
+	modal: true,
 
-	tbar: ['->',{
-		text: 'Agregar'
-	}, {
-		text: 'Eliminar'
+	tbar: ['->', {
+		text: 'Eliminar',
+		itemId: 'deleteFromAgendaBtn'
 	}],
 
 	items: [{
+		xtype: 'agendaform',
+		region: 'west',
+		width: 300,
+		// collapsible: true,
+		// maxwidth: 400
+	}, {
 		xtype: 'courseagendagrid',
-		title:''
+		// title: 'Temario',
+		region: 'center',
+		forEditing: false
 	}]
 });

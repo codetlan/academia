@@ -4,8 +4,11 @@
  * This is the course model
  */
 Ext.define('Cursos.model.Agenda', {
-	extend: 'Ext.data.Model',	
+	extend: 'Ext.data.Model',
 	fields: [{
+		name: '_id',
+		type: 'string'
+	},{
 		name: 'module',
 		type: 'string'
 	}, {
@@ -13,6 +16,12 @@ Ext.define('Cursos.model.Agenda', {
 		type: 'string'
 	}, {
 		name: 'duration',
+		type: 'string'
+	}, {
+		name: 'video',
+		type: 'string'
+	}, {
+		name: 'courseId',
 		type: 'string'
 	}]
 });
