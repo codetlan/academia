@@ -19,6 +19,15 @@ Ext.define('Cursos.view.admin.AgendaForm', {
 	},
 	bodyPadding: 10,
 	items: [{
+		name: '_id',
+		hidden: true,
+		allowBlank: true
+	},{
+		name: 'order',
+		// xtype:'numberfield',
+		emptyText: 'Orden',
+		fieldLabel: 'Orden'
+	},{
 		name: 'module',
 		value:'Introdución',
 		emptyText: 'Modulo',
@@ -35,11 +44,28 @@ Ext.define('Cursos.view.admin.AgendaForm', {
 		fieldLabel: 'Duración'
 	}, {
 		name: 'video',
-		value:'http://hacking-etico.com/wp-content/uploads/2012/04/ruby-on-rails.jpg',
-		emptyText: 'Video',
-		fieldLabel: 'Video',
+		hidden: true,
+		itemId:'imageHiddenField'
+	}, {
+		xtype:'fieldset',
+		height:200,
+		title:'Video de la lección',
+		layout:'fit',
+		items:{
+			xtype:'uploadcontainer',
+			type:'video',
+			inputName:'video'
+		}
 	}],
 	buttons: [{
+		text: 'Limpiar',
+		handler:function (btn) {
+			var form = btn.up('form');
+			form.getForm().reset();
+			form.down('#addOrUpAgendaItem').setText('Agregar');
+			form.down('fieldset uploadcontainer').reset();
+		}
+	},{
         text: 'Agregar',
         formBind: true,
         itemId:'addOrUpAgendaItem'

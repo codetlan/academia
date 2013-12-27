@@ -3,7 +3,7 @@ Accounts.onCreateUser(function (options, user) {
     console.log(options);
     var admins = [
         "luis_mtzg@msn.com","joagolo@hotmail.com",//Facebook
-        "lumartineck@gmail.com", "waldix86@gmail.com", "iam@armando.mx"];//Google
+        "lumartineck@gmail.com", "waldix86@gmail.com", "iam@armando.mx", "armando@cursa.me"];//Google
     if (options.profile) {
         console.log(user.services);
         user.profile = user.services.google || user.services.facebook;

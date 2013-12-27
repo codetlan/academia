@@ -2,13 +2,19 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "sencha-extjs": {}
+      "sencha-extjs": {},
+      "codemirror": {}
     },
     "packages": {
       "sencha-extjs": {
         "git": "https://github.com/manduks/meteor-sencha-extjs.git",
-        "tag": "v0.0.1",
-        "commit": "87d0efdf94b5e1657fd4a6e11412da6965d91d10"
+        "tag": "v0.0.8",
+        "commit": "15487fb4623fc12e21014e0080e0f0b5f6574c5d"
+      },
+      "codemirror": {
+        "git": "https://github.com/digioak/meteor-codemirror.git",
+        "tag": "v0.0.2",
+        "commit": "39185b6e97c485e7cd65a2ef84190923c050b0d8"
       }
     }
   }

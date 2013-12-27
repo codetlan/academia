@@ -19,7 +19,7 @@ Ext.define('Cursos.view.admin.courses.AdminCoursesPanel', {
 
 	layout: 'border',
 	defaults:{
-        padding:3,
+        padding:'0.5',
         split: true,
         autoScroll:true
     },

@@ -10,13 +10,24 @@ Ext.onReady(function() {
 						var course = Ext.create('Cursos.model.Course', course);
 						coursesStore.add(course);
 					},
+					changed: function(id, course) {
+						coursesStore.findRecord('_id', id).set(course);
+					},
 					removed: function(id) {
-						var course = coursesStore.findRecord('_id',id)
+						var course = coursesStore.findRecord('_id', id);
 						coursesStore.remove(course);
 					}
 				});
 			}),
-			Agendas: Meteor.subscribe('agendas')
+			Agendas: Meteor.subscribe('agendas', function() {
+				var agendasStore = Ext.data.StoreManager.lookup('Agendas'),
+					cursor = Agendas.find({});
+				cursor.observeChanges({
+					changed: function(id, agenda) {
+						agendasStore.findRecord('_id', id).set(agenda);
+					}
+				});
+			})
 		}
 	}
 });

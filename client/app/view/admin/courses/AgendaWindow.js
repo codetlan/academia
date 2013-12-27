@@ -18,9 +18,17 @@ Ext.define('Cursos.view.admin.AgendaWindow', {
 	},
 	modal: true,
 
-	tbar: ['->', {
+	tbar: ['->',{
+		text:'Archivos',
+		itemId:'addOrUpdateFiles'
+	} ,{
 		text: 'Eliminar',
 		itemId: 'deleteFromAgendaBtn'
+	},'-',{
+		text:'Cerrar Ventana',
+		handler:function (btn) {
+			btn.up('agendawindow').close();
+		}
 	}],
 
 	items: [{

@@ -9,6 +9,9 @@ Ext.define('Cursos.model.Agenda', {
 		name: '_id',
 		type: 'string'
 	},{
+		name: 'order',
+		type: 'int'
+	},{
 		name: 'module',
 		type: 'string'
 	}, {

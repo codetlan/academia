@@ -8,41 +8,78 @@ Ext.define('Cursos.view.admin.CourseForm', {
 	alias: 'widget.courseform',
 
 	defaultType: 'textfield',
-	title:'Curso',
+	title: 'Curso',
 	layout: 'anchor',
 	defaults: {
 		anchor: '100%',
 		allowBlank: false,
 		msgTarget: 'side',
-		height:40,
+		height: 40,
 	},
 	bodyPadding: 10,
 	items: [{
+		name: '_id',
+		hidden: true,
+		allowBlank: true
+	},{
 		name: 'title',
-		value:'Rails',
+		value: 'Rails',
 		emptyText: 'nombre del curso'
 	}, {
-		xtype:'textareafield',
+		xtype: 'textareafield',
 		name: 'description',
-		value:'Este es un curso basico de rails',
-		height:200,
+		value: 'Este es un curso basico de rails',
+		height: 200,
 		emptyText: 'Descripcion del curso'
 	}, {
-		name: 'image',
-		value:'http://hacking-etico.com/wp-content/uploads/2012/04/ruby-on-rails.jpg',
-		emptyText: 'imagen'
-	}, {
 		name: 'price',
-		value:25,
+		value: 25,
 		emptyText: 'Precio del curso'
 	}, {
 		name: 'user_id',
-		value:'Armando',
+		value: 'Armando',
 		emptyText: 'Instructor'
+	}, {
+		name: 'image',
+		hidden: true,
+		itemId: 'imageHiddenField'
+	}, {
+		xtype: 'fieldset',
+		height: 200,
+		title: 'Imagen del curso',
+		layout: 'fit',
+		items: {
+			xtype: 'uploadcontainer',
+			itemId: 'imageContanier'
+		}
+	}, {
+		name: 'trailer',
+		hidden: true,
+		itemId: 'videoHiddenField'
+	}, {
+		xtype: 'fieldset',
+		height: 200,
+		title: 'Trailer',
+		layout: 'fit',
+		items: {
+			xtype: 'uploadcontainer',
+			type: 'video',
+			itemId: 'videoContanier',
+			inputName: 'video'
+		}
 	}],
 	buttons: [{
-        text: 'Agregar',
-        formBind: true,
-        itemId:'addOrUpdateCourseBtn'
-    }]
+		text: 'Limpiar',
+		handler: function(btn) {
+			var form = btn.up('form');
+			form.getForm().reset();
+			form.down('#addOrUpdateCourseBtn').setText('Agregar');
+			form.down('fieldset #imageContanier').reset();
+			form.down('fieldset #videoContanier').reset();
+		}
+	}, {
+		text: 'Agregar',
+		formBind: true,
+		itemId: 'addOrUpdateCourseBtn'
+	}]
 });

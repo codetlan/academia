@@ -15,6 +15,7 @@ Ext.define('Cursos.Application', {
     stores: [
         'Courses',
         'Agendas',
-        'MenuItems'
+        'MenuItems',
+        'FileTypes'
     ]
 });

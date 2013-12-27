@@ -1,5 +1,6 @@
 {
   "packages": {
-    "sencha-extjs": {}
+    "sencha-extjs": {},
+    "codemirror": {}
   }
 }
