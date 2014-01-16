@@ -23,7 +23,7 @@ Ext.define('Ext.ux.desktop.Video', {
     bodyStyle: 'background-color:#000;color:#fff',
     html: '',
     tpl: [
-        '<video id="{id}-video" autoPlay="{autoplay}" controls="{controls}" poster="{poster}" start="{start}" loopstart="{loopstart}" loopend="{loopend}" autobuffer="{autobuffer}" loop="{loop}" style="width:100%;height:100%">',
+        '<video id="{id}-video" autoPlayy="{autoplay}" controls="{controls}" poster="{poster}" start="{start}" loopstart="{loopstart}" loopend="{loopend}" autobuffer="{autobuffer}" loop="{loop}" style="width:100%;height:100%">',
             '<tpl for="src">',
                 '<source src="{src}" type="{type}"/>',
             '</tpl>',

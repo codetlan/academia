@@ -1,9 +1,9 @@
 /**
- * @class Cursos.view.admin.AgendaWindow
+ * @class Cursos.view.admin.agenda.AgendaWindow
  * @extends Ext.window.Window
  * Esta es la ventana del admin para la academiaqqqw
  */
-Ext.define('Cursos.view.admin.AgendaWindow', {
+Ext.define('Cursos.view.admin.agenda.AgendaWindow', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.agendawindow',
 
@@ -20,7 +20,7 @@ Ext.define('Cursos.view.admin.AgendaWindow', {
 
 	tbar: ['->',{
 		text:'Archivos',
-		itemId:'addOrUpdateFiles'
+		itemId:'showAgendaFiles'
 	} ,{
 		text: 'Eliminar',
 		itemId: 'deleteFromAgendaBtn'

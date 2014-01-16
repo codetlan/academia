@@ -27,10 +27,12 @@ Ext.define('Cursos.view.SocialMenuList', {
 		}, {
 			option: 'Comunidad',
 			icon: 'icon-users'
-		}, {
-			option: 'Información',
-			icon: 'icon-info-circled'
-		}, {
+		}, 
+		// {
+		// 	option: 'Información',
+		// 	icon: 'icon-info-circled'
+		// },
+		{
 			option: 'Salir',
 			icon: 'icon-logout'
 		}]

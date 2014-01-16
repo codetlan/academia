@@ -39,7 +39,22 @@ Ext.define('Ext.ux.EditorPanel', {
 			editor;
 
 		if (editor = me.getEditor()) {
-			editor.getCodeEditor().setSize(me.getWidth(), me.getHeight() - 40);
+			editor.getCodeEditor().setSize(me.getWidth(), me.getHeight() - 0);
 		}
+	},
+	getValue: function () {
+		var me = this,
+		editor = me.getEditor().getCodeEditor();
+		return editor.getValue();
+	},
+	setValue: function (value) {
+		var me = this,
+		editor = me.getEditor().getCodeEditor();
+	 	editor.setValue(value);
+	},
+	reset: function () {
+		var me = this,
+		editor = me.getEditor().getCodeEditor();
+		editor.setValue('');		
 	}
 });

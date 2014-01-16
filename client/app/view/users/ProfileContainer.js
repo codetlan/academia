@@ -10,14 +10,28 @@ Ext.define('Cursos.view.users.ProfileContainer', {
 	cls: 'cursos-menu-user-container',
 	tpl: [
 		'<div class="cursos-user-profile">',
-		'<div class="cursos-user-avatar"><img src="http://i36.tinypic.com/xbcnr7.jpg"/></div>',
+		'<div class="cursos-user-avatar"><img src="{avatar}"/></div>',
 		'<div class="cursos-user-data">',
 		'<div class="cursos-user-name">{name}</div>',
-		'<div class="cursos-user-info">My Account</div>',
+		'<div class="cursos-user-info">Mi perfil</div>',
 		'</div>',
 		'</div>',
 	].join(''),
-	data: {
-		name: 'Armando Gonzalez'
+	initComponent: function() {
+		var me = this,
+			user = Meteor.user() && Meteor.user().profile;
+		
+		me.data = user && {
+			name: user.name,
+			avatar: user.picture
+		};
+		me.callParent();
+	},
+	listeners: {
+		render: function(container) {
+			container.getEl().on('click', function() {
+				container.fireEvent('click');
+			});
+		}
 	}
 });

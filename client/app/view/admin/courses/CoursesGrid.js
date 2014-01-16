@@ -3,7 +3,7 @@
  * @extends Ext.grid.Panel
  * Este es el grid que muestra los cursos creados
  */
-Ext.define('Cursos.view.admin.CoursesGrid', {
+Ext.define('Cursos.view.admin.courses.CoursesGrid', {
 	extend: 'Ext.grid.Panel',
 	alias: 'widget.coursesgrid',
 

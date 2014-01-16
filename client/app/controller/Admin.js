@@ -34,8 +34,8 @@ Ext.define('Cursos.controller.Admin', {
             'agendawindow #deleteFromAgendaBtn': {
                 click: me.onDeleteItemFromAgenda
             },
-            'agendawindow  #addOrUpdateFiles': {
-                click: me.onAddOrUpdateFiles
+            'agendawindow  #showAgendaFiles': {
+                click: me.onShowAgendaFiles
             },
             'courseform fieldset uploadcontainer': {
                 loaded: me.onCourseImageLoaded
@@ -48,6 +48,10 @@ Ext.define('Cursos.controller.Admin', {
             },
             'agendawindow courseagendagrid': {
                 itemclick: this.onCourseAgendaSelect
+            },
+            'agendacodeswindow': {
+                savecode: this.addOrUpdateCodesToAgenda,
+                deletecode: this.deleteCodeFromAgenda
             }
         });
 
@@ -62,14 +66,27 @@ Ext.define('Cursos.controller.Admin', {
         var form = this.getAdminCoursePanel().down('form');
         form.loadRecord(record);
         form.down('#addOrUpdateCourseBtn').setText('Editar');
-        form.down('fieldset uploadcontainer imagecomponent').setSrc(record.get('image'));
+        form.down('fieldset #imageContanier imagecomponent').setSrc(record.get('image'));
+        form.down('fieldset #badgeContanier imagecomponent').setSrc(record.get('badge'));
         form.down('fieldset #videoContanier').setVideo(record.get('trailer'));
     },
     onAgendaVideoLoaded: function(contanier, src) {
         contanier.up('form').down('#imageHiddenField').setValue(src);
     },
     onCourseImageLoaded: function(contanier, src) {
-        var itemId = (contanier.type === 'video') ? '#videoHiddenField' : '#imageHiddenField';
+        var itemId;
+
+        switch(contanier.itemId){
+            case 'imageContanier':
+                itemId = '#imageHiddenField';
+            break;
+            case 'videoContanier':
+                itemId = '#videoHiddenField';
+            break;
+            case 'badgeContanier':
+                itemId = '#badgeHiddenField';
+            break;
+        }
         contanier.up('form').down(itemId).setValue(src);
     },
     onDeleteItemFromAgenda: function() {
@@ -83,7 +100,7 @@ Ext.define('Cursos.controller.Admin', {
     },
     onShowAgendaOfCourse: function() {
         var me = this,
-            win = Ext.create('Cursos.view.admin.AgendaWindow'),
+            win = Ext.create('Cursos.view.admin.agenda.AgendaWindow'),
             course = me.getCoursesGridPanel().getSelectionModel().getSelection()[0];
         if (!course) {
             Ext.Msg.alert('Aviso', 'Debes seleccionar un curso');
@@ -145,10 +162,51 @@ Ext.define('Cursos.controller.Admin', {
             Courses.remove(record.get('_id'));
         }, this);
     },
-    onAddOrUpdateFiles: function() {
-        alert('ventana');
+    onShowAgendaFiles: function() {
         var me = this,
-            win = Ext.create('Cursos.view.admin.agenda.AgendaFilesWindow');
+            data, win,
+            agendaItem = me.getCourseAgendaGrid().getSelectionModel().getSelection()[0];
+
+        if (!agendaItem) {
+            Ext.Msg.alert('Aviso', 'Debes seleccionar alguna lección');
+            return;
+        }
+
+        win = Ext.create('Cursos.view.admin.agenda.AgendaCodesWindow');
         win.show();
+        // win.on('savefile', me.addOrUpdateCodesToAgenda, me);
+
+        // cargamos los codigos de el temario actual
+        data = Codes.find({
+            agendaId: agendaItem.get('_id')
+        }, {
+            sort: {
+                order: 1
+            }
+        }).fetch();
+
+        me.getStore('Codes').loadData(data);
+    },
+    addOrUpdateCodesToAgenda: function(win, values) {
+        var me = this,
+            record = me.getCourseAgendaGrid().getSelectionModel().getSelection()[0];
+
+        if (values['_id']) { //editamos el codigo
+            id = values['_id'];
+            delete values['_id'];
+            Codes.update(id, {
+                $set: values
+            });
+        } else {
+            delete values['_id'];
+            Ext.apply(values, {
+                agendaId: record.get('_id')
+            });
+            Codes.insert(values);
+        }
+    },
+    deleteCodeFromAgenda: function(win, record) {
+        Codes.remove(record.get('_id'));
+        win.reset();
     }
 });

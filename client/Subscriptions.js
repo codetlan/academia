@@ -27,6 +27,24 @@ Ext.onReady(function() {
 						agendasStore.findRecord('_id', id).set(agenda);
 					}
 				});
+			}),
+			Codes: Meteor.subscribe('codes', function() {
+				var codesStore = Ext.data.StoreManager.lookup('Codes'),
+					cursor = Codes.find({});
+				cursor.observeChanges({
+					added: function(id, code) {
+						code['_id'] = id;
+						var course = Ext.create('Cursos.model.Code', code);
+						codesStore.add(course);
+					},
+					changed: function(id, code) {
+						codesStore.findRecord('_id', id).set(code);
+					},
+					removed: function(id) {
+						var code = codesStore.findRecord('_id', id);
+						codesStore.remove(code);
+					}
+				});
 			})
 		}
 	}

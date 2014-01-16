@@ -23,5 +23,8 @@ Ext.define('Cursos.model.Course', {
    }, {
       name: 'trailer',
       type: 'string'
+   }, {
+      name: 'badge',
+      type: 'string'
    }]
 });

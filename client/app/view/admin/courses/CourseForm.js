@@ -3,7 +3,7 @@
  * @extends Ext.form.Panel
  * Este es el form para dar de alta el curso
  */
-Ext.define('Cursos.view.admin.CourseForm', {
+Ext.define('Cursos.view.admin.courses.CourseForm', {
 	extend: 'Ext.form.Panel',
 	alias: 'widget.courseform',
 
@@ -29,7 +29,7 @@ Ext.define('Cursos.view.admin.CourseForm', {
 		xtype: 'textareafield',
 		name: 'description',
 		value: 'Este es un curso basico de rails',
-		height: 200,
+		height: 100,
 		emptyText: 'Descripcion del curso'
 	}, {
 		name: 'price',
@@ -67,6 +67,19 @@ Ext.define('Cursos.view.admin.CourseForm', {
 			itemId: 'videoContanier',
 			inputName: 'video'
 		}
+	}, {
+		name: 'badge',
+		hidden: true,
+		itemId: 'badgeHiddenField'
+	}, {
+		xtype: 'fieldset',
+		height: 200,
+		title: 'Badge',
+		layout: 'fit',
+		items: {
+			xtype: 'uploadcontainer',
+			itemId: 'badgeContanier'
+		}
 	}],
 	buttons: [{
 		text: 'Limpiar',
@@ -76,6 +89,7 @@ Ext.define('Cursos.view.admin.CourseForm', {
 			form.down('#addOrUpdateCourseBtn').setText('Agregar');
 			form.down('fieldset #imageContanier').reset();
 			form.down('fieldset #videoContanier').reset();
+			form.down('fieldset #badgeContanier').reset();
 		}
 	}, {
 		text: 'Agregar',

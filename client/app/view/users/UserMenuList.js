@@ -22,11 +22,13 @@ Ext.define('Cursos.view.users.UserMenuList', {
 	overItemCls: 'cursos-menu-item-over',
 	store: {
 		type: 'menuitems',
-		data: [{
-			option: 'Mensajes',
-			icon: 'icon-mail',
-			badge: 8
-		}, {
+		data: [
+		// {
+		// 	option: 'Mensajes',
+		// 	icon: 'icon-mail',
+		// 	badge: 8
+		// },
+		 {
 			option: 'Notificaciones',
 			icon: 'icon-bell',
 			badge: 9

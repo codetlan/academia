@@ -1,9 +1,9 @@
 /**
- * @class Cursos.view.admin.AgendaForm
+ * @class Cursos.view.admin.courses.AgendaForm
  * @extends Ext.form.Panel
  * Este es el form para dar de alta el curso
  */
-Ext.define('Cursos.view.admin.AgendaForm', {
+Ext.define('Cursos.view.admin.courses.AgendaForm', {
 	extend: 'Ext.form.Panel',
 	alias: 'widget.agendaform',
 

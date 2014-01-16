@@ -3,9 +3,11 @@
 @blue-border: #0E90DC;
 @dark-border:  #3D444C;
 @dark-background:#2C2F34;
+// @import url(http://fonts.googleapis.com/css?family=Exo+2);
 
 .courses-list-item{
-	padding: 8px;
+	// padding: 8px;
+	font-family: 'Exo 2', sans-serif;
 	margin: 20px 0px 0px 30px;
 	float: left;
 	background-color: @blue;
@@ -19,11 +21,21 @@
 	.courses-list-item-name{
 		color: #FFF;
 		font-size: 18px;
+		margin-top:-100px;
+		margin-left: 20px;
+		// text-align: center;
 		padding: 10px 0 10px 0px;
+		span{
+			color: #CCC;
+			font-size: 12px;	
+		}
 	}
 	.courses-list-item-social{
 		padding: 10px 0 10px 0px;
-		margin-left: -8px;
+		// margin-left: -2px;
+		z-index: 100;
+		position: relative;
+		margin-top:-5px;
 		div{
 			float:left;
 			width: 32%;

@@ -5,11 +5,13 @@
 @blue-border: #0E90DC;
 @dark-border:  #3D444C;
 @dark-background:#2C2F34;
+@dark-toolbar:#323232;
+@import url(http://fonts.googleapis.com/css?family=Varela+Round);
 
-.cursos-landing-panel-toolbar{
-	background-color: @blue-border;
+.cursos-landing-panel-toolbar{	
+	background-color: #005385;
+	height: 60px;
 	.cursos-landing-panel-toolbar-button{
-		background-color: @blue-border;
 		color: #FFF;
 		padding: 0px;
 		padding-right: 20px;
@@ -17,20 +19,136 @@
 		font-size: 18px;
 		&:hover { cursor: pointer }
 	}
-	.cursos-landing-panel-toolbar-button-codetlan{
-		background-color: @blue-border;
+	.cursos-landing-panel-toolbar-text-codetlan{
+		// background-color: @dark-toolbar;
 		color: #FFF;
 		padding: 2px;
 		padding-right: 20px;
 		padding-left: 15px;
 		font-size: 20px;
+		font-family: 'Exo 2', sans-serif;
+		// font-weight: 500;
 		text-transform: uppercase;
 		text-decoration: none;
+		text-align: center;
+	}
+	.cursos-landing-panel-toolbar-image-codetlan{
+		background-color:#FFF;
+		color: #FFF;
+		width: 64px;
+		height: 64px;
+		border: #fff solid 1px;
+		text-align: center;
+		border-radius: 70px;
 		&:hover { cursor: pointer }
-		img{
-			width: 48px;
-			float: left: 
-			background: #FFF;
-		}
 	}
 }
+
+.cursos-landing-panel-poster-component{
+	background: #3D444C url('../../../images/user-bg2.jpg');
+	// background: #3D444C url('../../../images/bg.jpg');
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+}
+
+.cursos-landing-panel-poster{
+	margin: auto;
+	margin-top:30px;
+	width: 860px;	
+	
+	div{
+		opacity: 0.9;
+		&:hover{
+			opacity: 1.0;
+		}
+	}
+	.cursos-landing-panel-poster-icon-top{
+		float: left;		
+		margin: 5px;
+		img{
+			width: 200px;
+		}
+	}
+	.cursos-landing-panel-poster-icon-middle-push-left{
+		float: left;
+		margin: 5px;		
+		margin-top: -50px;
+		margin-left: -100px;
+		img{
+			width: 200px;
+		}
+	}
+	.cursos-landing-panel-poster-icon-middle-push-right{
+		float: left;
+		margin: 5px;		
+		margin-top: -50px;
+		margin-right: -110px;
+		img{
+			width: 200px;
+		}
+	}
+	.cursos-landing-panel-poster-icon-middle{
+		float: left;
+		margin: 5px;		
+		margin-top: -50px;
+		img{
+			width: 200px;
+		}
+	}
+
+	.cursos-landing-panel-poster-icon-bottom{
+		float: left;
+		margin: 5px;
+		margin-top: -50px;
+		img{
+			width: 200px;
+		}
+		margin-bottom:20px;
+	}
+}
+.cursos-landing-panel-poster-legend{
+	color: #FFF;
+	padding: 10px;
+	background-color: rgba(0,0,0,.7);
+	font-family: 'Exo 2', sans-serif;
+	margin: auto;
+	clear: both;
+	text-align: center;
+	margin-bottom:30px;
+	width: 660px;
+	border-radius: 5px;
+	font-size: 20px;
+}
+
+@orange-codetlan :#F3923D;
+.cursos-landing-panel-search-toolbar{	
+	background-color: @dark-background;
+	// background-color: @dark-border;
+	// background-color: #005385;
+	background-color: @orange-codetlan;
+	div{
+		color: #FFF;
+		font-family: 'Exo 2', sans-serif;
+		font-size: 16px;
+	}
+}
+.cursos-landing-panel-courseslist{
+	// background: #3D444C url('../../../images/user-bg13.jpg');
+	// background: #3D444C url('../../../images/square.gif');
+	background-color: #EEE;
+	position: relative;
+}
+.cursos-landing-panel-footer{
+	background-color: @dark;	
+	background-color: #005284;
+	border-top: @blue;	
+	.cursos-landing-panel-footer-text{
+		float: right;
+		color: #FFF;	
+		text-align: center;
+		text-align: right;
+		font-family: 'Exo 2', sans-serif;
+		padding: 10px;
+	}
+}
+

@@ -32,8 +32,8 @@ Meteor.methods({
 
 
 Meteor.call("S3config", {
-	key: 'AKIAI6E424O54KTAQCDQ',
-	secret: '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',
+	key: 'AKIAIS2727TB7P3YXUIQ',
+	secret: '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',
 	bucket: 'academia-codetlan',
 	directory: '/academia/' //This is optional, defaults to root
 });
