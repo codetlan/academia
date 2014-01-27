@@ -1,0 +1,41 @@
+@dark: #1D1E20;
+@blue: #0B80D0;
+@blue-border: #0E90DC;
+@dark-border:  #3D444C;
+
+.courses-payment-options-list-main{
+	width: 868px;
+	margin: auto;
+}
+.courses-payment-options-list-item{
+	background-color: rgba(84, 75, 88, 0.5);
+	display: block;
+	float: left;
+	margin: 2px;
+	padding: 2px;
+	border-radius: 5px;
+	background-color: #FFF;
+	.courses-payment-options-list-item-image{
+		float: left;		
+		img{
+			width: 90px;
+			height: 90px;
+			margin: 5px;
+		}		
+	}
+	&:hover{
+		background-color: @blue;
+		cursor: pointer;
+	}
+}
+.courses-payment-options-list-item-selected{	
+	background-color: @blue;
+	.courses-payment-options-list-item-image{
+		background-color: @blue;
+		img{
+			width: 90px;
+			height: 90px;
+			margin: 5px;
+		}		
+	}
+}

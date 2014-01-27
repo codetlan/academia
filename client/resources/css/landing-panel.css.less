@@ -7,49 +7,57 @@
 @dark-background:#2C2F34;
 @dark-toolbar:#323232;
 @import url(http://fonts.googleapis.com/css?family=Varela+Round);
+@orange-codetlan :#F3923D;
+@import url(http://fonts.googleapis.com/css?family=PT+Sans+Caption);
+@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow);
 
 .cursos-landing-panel-toolbar{	
 	background-color: #005385;
-	height: 60px;
+	background-color: transparent;
+	// background: #3D444C url('../../../images/bg2.png');
+	// background-size:100% auto;
+	// background-repeat:no-repeat;
+	padding-top: 20px;
 	.cursos-landing-panel-toolbar-button{
+		font-family: 'PT Sans Narrow', sans-serif;
+		text-indent: 1px;
 		color: #FFF;
-		padding: 0px;
-		padding-right: 20px;
-		border-left: 2px solid @blue;
+		padding: 10px;
+		padding-right: 10px;
 		font-size: 18px;
-		&:hover { cursor: pointer }
+		letter-spacing: 1px;
+		border: 8px solid #EEE;
+		border-radius: 5px;
+		text-align: center;
+		&:hover { 
+			cursor: pointer;
+			color: @blue-border;
+		}
 	}
 	.cursos-landing-panel-toolbar-text-codetlan{
-		// background-color: @dark-toolbar;
 		color: #FFF;
 		padding: 2px;
 		padding-right: 20px;
 		padding-left: 15px;
-		font-size: 20px;
-		font-family: 'Exo 2', sans-serif;
-		// font-weight: 500;
+		font-size: 18px;
+		font-family: 'PT Sans Narrow', sans-serif;
 		text-transform: uppercase;
 		text-decoration: none;
-		text-align: center;
+		text-align: center;		
+  		letter-spacing: 1px;
 	}
 	.cursos-landing-panel-toolbar-image-codetlan{
 		background-color:#FFF;
 		color: #FFF;
-		width: 64px;
-		height: 64px;
-		border: #fff solid 1px;
+		width: 48px;
+		height: 60px;
+		border: #fff solid 3px;
 		text-align: center;
-		border-radius: 70px;
+		border-radius: 60px;
 		&:hover { cursor: pointer }
 	}
 }
 
-.cursos-landing-panel-poster-component{
-	background: #3D444C url('../../../images/user-bg2.jpg');
-	// background: #3D444C url('../../../images/bg.jpg');
-	background-size:100% 100%;
-	background-repeat:no-repeat;
-}
 
 .cursos-landing-panel-poster{
 	margin: auto;
@@ -103,40 +111,56 @@
 		img{
 			width: 200px;
 		}
-		margin-bottom:20px;
+		margin-bottom:0px;
 	}
+
 }
 .cursos-landing-panel-poster-legend{
 	color: #FFF;
-	padding: 10px;
-	background-color: rgba(0,0,0,.7);
-	font-family: 'Exo 2', sans-serif;
-	margin: auto;
+	font-family: 'PT Sans Caption', sans-serif;
+	// font-family: 'PT Sans Narrow', sans-serif;
+	margin: 40px auto;
 	clear: both;
 	text-align: center;
 	margin-bottom:30px;
-	width: 660px;
-	border-radius: 5px;
-	font-size: 20px;
+	width: 960px;
+	font-size: 25px;
+	letter-spacing: 1px;
 }
 
-@orange-codetlan :#F3923D;
-.cursos-landing-panel-search-toolbar{	
-	background-color: @dark-background;
-	background-color: @orange-codetlan;
+.cursos-landing-panel-poster-gradient{
+		height: 83px;
+		background-color: transparent !important;
+		// display: block;
+		position: relative;
+		background: rgba(0,0,0,0.5);
+		margin-top: -88px;
+		background: #3D444C url('../../../images/degradado.png');
+}
+
+
+.cursos-landing-panel-search-toolbar{
+	background-color: #2C3747;
+	height: 50px;
+	padding: 4px;
+	position: relative;
+	margin-top: -5px;
 	div{
 		color: #FFF;
 		font-family: 'Exo 2', sans-serif;
+		font-family: 'PT Sans Caption', sans-serif;
 		font-size: 16px;
 	}
 }
 .cursos-landing-panel-courseslist{
-	// background: #3D444C url('../../../images/square.gif');
-	background-color: #EEE;
+	// background: #3D444C url('../../../images/bg2.jpg');
+	// background: #3D444C url('../../../images/user-bg2.jpg');
+	background-color: #FFF;
 	position: relative;
 }
 .cursos-landing-panel-footer{
 	background-color: #005385;
+	background-color: #2C3747;
 	// border-top: @blue;	
 	.cursos-landing-panel-footer-text{
 		float: right;
@@ -145,6 +169,66 @@
 		text-align: right;
 		font-family: 'Exo 2', sans-serif;
 		padding: 10px;
+	}
+}
+.cursos-landing-panel-facebook-btn{
+	border: 1px solid #185895;	
+
+	background-color: #185996;
+	background-image: -moz-linear-gradient(top,#1a60a2,#154e83);
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(#1a60a2),to(#154e83));
+	background-image: -webkit-linear-gradient(top,#1a60a2,#154e83);
+	background-image: -o-linear-gradient(top,#1a60a2,#154e83);
+	background-image: linear-gradient(to bottom,#1a60a2,#154e83);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1a60a2',endColorstr='#ff154e83',GradientType=0);
+	border-color: #154e83 #154e83 #0a2741;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	height: 40px;
+	padding: 10px 0 0 10px;
+	span{
+		color: #fff;
+		text-shadow: none;
+		margin-left: 10px;
+		letter-spacing: 1px;
+	}
+	i{
+		float: left;
+		border-right: 1px #FFF solid;
+	}
+	&:hover{
+		cursor: pointer;
+	}
+}
+.cursos-landing-panel-google-btn{
+	border: 1px solid #1faae0;
+	background-color: #26a7da;
+	background-image: -moz-linear-gradient(top,#2cafe2,#1c9cce);
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(#2cafe2),to(#1c9cce));
+	background-image: -webkit-linear-gradient(top,#2cafe2,#1c9cce);
+	background-image: -o-linear-gradient(top,#2cafe2,#1c9cce);
+	background-image: linear-gradient(to bottom,#2cafe2,#1c9cce);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff2cafe2',endColorstr='#ff1c9cce',GradientType=0);
+	border-color: #1c9cce #1c9cce #13698b;
+	border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	height: 40px;
+	padding: 10px 0 0 10px;
+	span{
+		color: #fff;
+		margin-left: 10px;
+		text-shadow: none;
+		letter-spacing: 1px;
+	}
+	i{
+		float: left;
+		border-right: 1px #FFF solid;
+	}
+	&:hover{
+		cursor: pointer;
+		background-color: #2cafe2;
 	}
 }
 

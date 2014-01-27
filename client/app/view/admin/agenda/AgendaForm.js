@@ -37,7 +37,7 @@ Ext.define('Cursos.view.admin.courses.AgendaForm', {
 		value:'Instalación',
 		emptyText: 'Lección',
 		fieldLabel: 'Lección'
-	},, {
+	}, {
 		name: 'duration',
 		value:'8:30',
 		emptyText: 'duracion del la lección',

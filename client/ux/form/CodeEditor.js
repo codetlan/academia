@@ -1,6 +1,6 @@
 /**
  * @class Ext.ux.form.CodeEditor
- * @extends Ext.Panel
+ * @extends Ext.form.field.TextArea
  * This is the texarea for code editing
  */
 Ext.define('Ext.ux.form.CodeEditor', {

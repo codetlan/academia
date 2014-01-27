@@ -15,18 +15,22 @@ Ext.define('Cursos.controller.Main', {
         selector: 'mainpanel'
     }],
 
+    onLaunch: function() {
+        Conekta.setPublishableKey('key_MxhSqdJdtsmBy64o');
+    },
 
     init: function() {
         var me = this;
 
         me.control({
-            'landingpanel #btnLoginWithGoogle': {
-                click: me.onLoginUser
-            },'landingpanel #searchCourseField': {
+            'landingpanel': {
+                trylogin: me.onLoginUser
+            },
+            'landingpanel #searchCourseField': {
                 change: me.onSearchCourseFieldChange
             },
             'landingpanel courseslist': {
-                // itemclick: me.onCourseItemClick
+                itemclick: me.onCourseItemClick
             },
             'mainpanel menupanel socialmenulist': {
                 itemclick: me.onSocialMenuItemClick
@@ -34,21 +38,20 @@ Ext.define('Cursos.controller.Main', {
             'mainpanel menupanel usermenulist': {
                 itemclick: me.onUserMenuItemClick
             },
+            'mainpanel toolbar #searchCourseField': {
+                change: me.onSearchCourseFieldChange
+            },
             'profilecontainer': {
                 click: me.onProfileContainerClick
+            },
+            'mainpanel coursescontanier courseslist': {
+                itemclick: me.onCourseItemClick
             }
         });
         me.waitForMeteor(function() {
             if (Meteor.userId()) {
                 me.getMain().layout.setActiveItem(1);
-                if (Meteor.user().profile.role === "admin") {
-                    // me.onShowAdmin();
-                    var adminMenu = Ext.create('Cursos.model.MenuItem', {
-                        option: 'Administración',
-                        icon: 'icon-cog-alt'
-                    });
-                    me.getSocialMenulist().getStore().insert(0, adminMenu);
-                }
+                me.addAdminMenu();
             }
         });
 
@@ -100,14 +103,34 @@ Ext.define('Cursos.controller.Main', {
     },
     onCourseItemClick: function(view, record, item, index, e) {
         var me = this,
-            data = Agendas.find({
-                courseId: record.get('_id')
-            }).fetch();
-        me.getCoursePanel().expand();
-        me.getCoursePanel().setTitle(record.get('title'));
-        me.getStore('Agendas').loadData(data);
+            win,
+            target = e.getTarget();
+
+        // si se trata de tomar el curso
+        if (target.className == "courses-list-item-name-get-course-btn") {
+            alert('tomar curso');
+            return;
+        }
+        // si se trata de comprar el curso
+        if (target.className == "courses-list-item-name-buy-course-btn") {
+            alert('Comprar curso');
+            view.up('#courseStand').layout.setActiveItem(1);
+            return;
+        }
+        win = Ext.create('Ext.Window', {
+            width: 600,
+            height: 500,
+            layout: 'fit',
+            title: record.get('title'),
+            modal: true,
+            draggable: false,
+            items: {
+                xtype: 'video',
+                src: record.get('trailer')
+            }
+        }).show(item);
     },
-    onLoginUser: function() {
+    onLoginUser: function(btn) {
         var me = this;
         Meteor.loginWithGoogle(function(err) {
             if (err) {
@@ -116,16 +139,29 @@ Ext.define('Cursos.controller.Main', {
                 me.getMain().layout.setActiveItem(1);
                 // seteamos los datos del usuario
                 var user = Meteor.user().profile;
-        
-               data = {
+
+                data = {
                     name: user.name,
                     avatar: user.picture
                 };
                 me.getMain().down('menupanel').down('profilecontainer').update(data);
                 me.getMain().down('usercontainer').update(data);
                 me.getMain().down('badgeslist').update(user.badges);
+
+                me.addAdminMenu();
             }
         });
+    },
+    addAdminMenu: function() {
+        var me = this;
+        if (Meteor.user().profile.role === "admin") {
+            // me.onShowAdmin();
+            var adminMenu = Ext.create('Cursos.model.MenuItem', {
+                option: 'Administración',
+                icon: 'icon-cog-alt'
+            });
+            me.getSocialMenulist().getStore().insert(0, adminMenu);
+        }
     },
     onLogOutUser: function() {
         var me = this;
@@ -145,9 +181,9 @@ Ext.define('Cursos.controller.Main', {
             body.unmask();
         }, 500);
     },
-    onSearchCourseFieldChange:function (textfiel, value) {
+    onSearchCourseFieldChange: function(textfiel, value) {
         var me = this,
-            store  = me.getStore('Courses');
+            store = me.getStore('Courses');
 
         //TODO: the suspend/resume hack can be removed once Filtering has been updated
         store.suspendEvents();
@@ -155,7 +191,7 @@ Ext.define('Cursos.controller.Main', {
         store.resumeEvents();
         store.filter([{
             fn: function(record) {
-                return record.get('description').indexOf(value) != -1 ;
+                return record.get('description').indexOf(value) != -1;
             }
         }]);
         store.sort('title', 'ASC');
