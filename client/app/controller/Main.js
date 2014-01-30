@@ -65,13 +65,17 @@ Ext.define('Cursos.controller.Main', {
 
     onSocialMenuItemClick: function(view, record, item, index, e) {
         var me = this,
-            layout = me.getMainPanel().down('#mainContainer').layout;
+            mainContainer = me.getMainPanel().down('#mainContainer'),
+            layout = mainContainer.layout;
+
         switch (record.get('icon')) {
             case 'icon-logout':
                 me.onLogOutUser();
                 break;
             case 'icon-video':
                 layout.setActiveItem(3);
+                mainContainer.down('#courseStand').layout.setActiveItem(0);
+                // mainContainer.down('#courseStand').down('paymentcontainer').resetShoppingCarForms();
                 break;
             case 'icon-users':
                 layout.setActiveItem(4);
@@ -85,6 +89,7 @@ Ext.define('Cursos.controller.Main', {
     },
     onUserMenuItemClick: function(view, record, item, index, e) {
         var me = this,
+            mainContainer = me.getMainPanel().down('#mainContainer'),
             layout = me.getMainPanel().down('#mainContainer').layout;
         switch (record.get('icon')) {
             case 'icon-bell':
@@ -104,7 +109,8 @@ Ext.define('Cursos.controller.Main', {
     onCourseItemClick: function(view, record, item, index, e) {
         var me = this,
             win,
-            target = e.getTarget();
+            target = e.getTarget(),
+            stand;
 
         // si se trata de tomar el curso
         if (target.className == "courses-list-item-name-get-course-btn") {
@@ -113,8 +119,12 @@ Ext.define('Cursos.controller.Main', {
         }
         // si se trata de comprar el curso
         if (target.className == "courses-list-item-name-buy-course-btn") {
-            alert('Comprar curso');
-            view.up('#courseStand').layout.setActiveItem(1);
+            stand = view.up('#courseStand');
+            stand.layout.setActiveItem(1);
+            stand.down('paymentcontainer').setShoppingCarData({
+                name: record.get('title'),
+                price: record.get('price')
+            });
             return;
         }
         win = Ext.create('Ext.Window', {

@@ -20,7 +20,7 @@ Ext.define('Cursos.view.Main', {
             itemId: 'mainContainer',
             autoScroll: true,
             layout: 'card',
-            activeItem: 3,
+            activeItem: 0,
             border: false,
             items: [{
                 xtype: 'container',
@@ -42,7 +42,7 @@ Ext.define('Cursos.view.Main', {
                 xtype: 'container',
                 layout: 'card',
                 itemId:'courseStand',
-                activeItem:1,
+                activeItem:0,
                 items: [{
                     xtype: 'coursescontanier',
                     toolbarText: 'Cursos Disponibles'

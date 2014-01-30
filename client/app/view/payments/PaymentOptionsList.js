@@ -31,28 +31,28 @@ Ext.define('Cursos.view.payments.PaymentOptionsList', {
 		type: 'paymentoptions',
 		data: [{
 			image: 'images/payments/receipt-cc-btn.png',
-			active: true
+			card: true
 		},{
 			image: 'images/payments/receipt-oxxo-btn.png',
-			active: false
+			card: false
 		}, {
 			image: 'images/payments/receipt-seven-btn.png',
-			active: true
+			card: false
 		}, {
 			image: 'images/payments/receipt-coppel-btn.png',
-			active: true
+			card: false
 		}, {
 			image: 'images/payments/receipt-elektra-btn.png',
-			active: true
+			card: false
 		}, {
 			image: 'images/payments/receipt-sams-btn.png',
-			active: true
+			card: false
 		},{
 			image: 'images/payments/receipt-aurrera-btn.png',
-			active: true
+			card: false
 		}, {
 			image: 'images/payments/receipt-walmart-btn.png',
-			active: true
+			card: false
 		}]
 	}
 });
