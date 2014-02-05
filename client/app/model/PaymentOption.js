@@ -7,6 +7,7 @@ Ext.define('Cursos.model.PaymentOption', {
     extend: 'Ext.data.Model',
     fields: [
         { name:'image', type:'string' },
+        { name:'place', type:'string' },
         { name:'card', type:'boolean' },
     ]
 });

@@ -57,8 +57,25 @@ Ext.define('Cursos.view.users.CashForm', {
 			form.getForm().reset();
 		}
 	}, {
-		text: 'Imprimir Orden de Pago',
+		text: 'Pagar',
 		scale: 'large',
-		formBind: true
+		formBind: true,
+		itemId:'payOnPlace',
+		handler: function () {
+			var obj = {
+                     "product_price": 10000.0,
+                     "product_name": "SAMSUNG GOLD CURL",
+                     "product_id": "SMGCURL1",
+                     "image_url": "https://test.amazon.com/5f4373",
+                     "customer_name": "Alejandra Leyva",
+                     "customer_email": "noreply@compropago.com",
+                     "customer_phone": "2221515801",
+                     "payment_type": "OXXO",
+                     "send_sms": false
+                 };
+			Meteor.call("curl", obj, function(error, result) {
+				console.log(result);
+			});
+		}
 	}]
 });

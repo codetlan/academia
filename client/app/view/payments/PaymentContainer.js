@@ -18,12 +18,15 @@ Ext.define('Cursos.view.payments.PaymentContainer', {
 		xtype: 'paymentoptionslist',
 		listeners: {
 			itemclick: function(v, record) {
+				var creditcardForm = v.up('paymentcontainer').down('creditcardform'),
+					cashForm = v.up('paymentcontainer').down('cashform');
 				if (record.get('card')) {
-					v.up('paymentcontainer').down('creditcardform').getEl().unmask();
-					v.up('paymentcontainer').down('cashform').getEl().mask();
+					creditcardForm.getEl().unmask();
+					cashForm.getEl().mask();
 				} else {
-					v.up('paymentcontainer').down('cashform').getEl().unmask();
-					v.up('paymentcontainer').down('creditcardform').getEl().mask();
+					cashForm.getEl().unmask();
+					cashForm.down('#payOnPlace').setText('Pagar en '+ record.get('place'));
+					creditcardForm.getEl().mask();
 				}
 			}
 		}

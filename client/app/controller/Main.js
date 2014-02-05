@@ -163,14 +163,16 @@ Ext.define('Cursos.controller.Main', {
         });
     },
     addAdminMenu: function() {
-        var me = this;
-        if (Meteor.user().profile.role === "admin") {
+        var me = this, store = me.getSocialMenulist().getStore();
+
+        if (Meteor.user().profile.role === "admin" && !!store.find('icon','icon-cog-alt')) {
             // me.onShowAdmin();
+            
             var adminMenu = Ext.create('Cursos.model.MenuItem', {
                 option: 'Administración',
                 icon: 'icon-cog-alt'
             });
-            me.getSocialMenulist().getStore().insert(0, adminMenu);
+            store.insert(0, adminMenu);
         }
     },
     onLogOutUser: function() {
