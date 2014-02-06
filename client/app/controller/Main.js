@@ -123,7 +123,10 @@ Ext.define('Cursos.controller.Main', {
             stand.layout.setActiveItem(1);
             stand.down('paymentcontainer').setShoppingCarData({
                 name: record.get('title'),
-                price: record.get('price')
+                price: record.get('price'),
+                id: record.get('_id'),
+                type:'Course',
+                image: record.get('image')
             });
             return;
         }
@@ -187,7 +190,7 @@ Ext.define('Cursos.controller.Main', {
     },
     waitForMeteor: function(fn) {
         var body = Ext.getBody();
-        body.mask('Actualizando ...');
+        body.mask('Cargando ...');
         setTimeout(function() {
             fn();
             body.unmask();

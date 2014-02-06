@@ -10,6 +10,9 @@ Ext.define('Cursos.view.users.CreditCardForm', {
 
 	defaultType: 'textfield',
 	layout: 'anchor',
+	config:{
+		paymentObject: undefined
+	},
 	fieldDefaults: {
 		height: 40,
 		msgTarget: 'side',

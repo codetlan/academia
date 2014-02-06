@@ -1,19 +1,21 @@
- var Future = Npm.require('fibers/future');
- var request = Npm.require('request');
+ var Future = Npm.require('fibers/future'),
+     request = Npm.require('request');
 
+ var COMPROPAGO_DEVELOPMENT_KEY = 'e58dc4e347211',
+     COMPROPAGO_PRODUCTION_KEY = '0875847df0f31';
+     
  Meteor.methods({
-     curl: function(productObj) {
+     compropagoCurl: function(productObj) {
          var future = new Future(),
              curl, getData;
          curl = function() {
-             var auth = new Buffer('e58dc4e347211' + ":").toString("base64");
+             var auth = new Buffer(COMPROPAGO_DEVELOPMENT_KEY + ":").toString("base64");
              var options = {
                  url: 'https://api.compropago.com/v1/charges',
                  method: "POST",
                  headers: {
                      'Authorization': 'Basic ' + auth,
                      'Content-Type': 'application/json'
-
                  },
                  json: productObj
              };

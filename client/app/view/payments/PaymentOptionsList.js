@@ -56,7 +56,7 @@ Ext.define('Cursos.view.payments.PaymentOptionsList', {
 		},{
 			image: 'images/payments/receipt-aurrera-btn.png',
 			card: false,
-			place:'Aurrera'
+			place:'Bodega Aurrera'
 		}, {
 			image: 'images/payments/receipt-walmart-btn.png',
 			card: false,

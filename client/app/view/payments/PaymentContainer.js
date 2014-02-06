@@ -19,13 +19,16 @@ Ext.define('Cursos.view.payments.PaymentContainer', {
 		listeners: {
 			itemclick: function(v, record) {
 				var creditcardForm = v.up('paymentcontainer').down('creditcardform'),
-					cashForm = v.up('paymentcontainer').down('cashform');
+					cashForm = v.up('paymentcontainer').down('cashform'), place;
 				if (record.get('card')) {
 					creditcardForm.getEl().unmask();
 					cashForm.getEl().mask();
 				} else {
+					place = record.get('place');
+					cashForm.setPaymentType(place.toUpperCase().replace(' ','_'));
+					cashForm.setPaymentTypeImage(record.get('image'));
 					cashForm.getEl().unmask();
-					cashForm.down('#payOnPlace').setText('Pagar en '+ record.get('place'));
+					cashForm.down('#payOnPlace').setText('Pagar en '+ place);
 					creditcardForm.getEl().mask();
 				}
 			}
@@ -50,8 +53,13 @@ Ext.define('Cursos.view.payments.PaymentContainer', {
 	}],
 
 	setShoppingCarData: function(obj) {
-		this.down('creditcardform').down('shoppincarfieldset').update(obj);
-		this.down('cashform').down('shoppincarfieldset').update(obj);
+		var cashForm = this.down('cashform'),
+			creditCardForm = this.down('creditcardform');
+		cashForm.down('shoppincarfieldset').update(obj);
+		creditCardForm.down('shoppincarfieldset').update(obj);
+
+		cashForm.setPaymentObject(obj);
+		creditCardForm.setPaymentObject(obj);
 	},
 
 	resetShoppingCarForms: function() {
