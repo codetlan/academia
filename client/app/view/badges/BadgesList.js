@@ -7,12 +7,12 @@ Ext.define('Cursos.view.BadgesList', {
 	extend: 'Ext.view.View',
 	alias: 'widget.badgeslist',
 
-	// autoScroll:true,
+	//autoScroll:true,
 	cls: 'courses-badges-list-main',
 	html:'<div class="courses-badges-list-title">Medallas</div>',
 	tpl: [
 		'<tpl for=".">',
-			'<div class="courses-badges-list-item" >',
+			'<div class="courses-badges-list-item" data-qtip="{legend}">',
 				'<tpl if="active">',
 					'<div class="courses-badges-list-item-image">',
 				'<tpl else>',

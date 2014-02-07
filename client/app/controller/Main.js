@@ -82,7 +82,8 @@ Ext.define('Cursos.controller.Main', {
                         "profile.courses": course,
                         "profile.badges": {
                             image: course.badge,
-                            active: false
+                            active: false,
+                            legend:'Poder legendario ' + course.title
                         }
                     }
                 });

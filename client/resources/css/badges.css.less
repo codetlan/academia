@@ -4,7 +4,7 @@
 @dark-border:  #3D444C;
 
 .courses-badges-list-main{
-	background-color: rgba(84, 75, 88, 0.5);
+	background-color: rgba(0, 0, 0, 0.2);
 	margin-left: 10px;
 	margin-right: 10px;
 
@@ -14,12 +14,9 @@
 	-moz-border-radius-topright: 5px;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
-
-	// border-radius: 5px;
 }
 
 .courses-badges-list-item{
-	background-color: rgba(84, 75, 88, 0.5);
 	display: block;
 	.courses-badges-list-item-image{
 		float: left;
@@ -28,8 +25,16 @@
 			border-radius:64px;
 			width: 64px;
 			height: 64px;
-			// border: 1px #FFF solid;
-			// border-color: rgba(84, 75, 88, 0.5);
+			//transition: border 0.5s ease;
+			//-webkit-transition: border 0.5s ease; /* Safari */
+		}
+		//transition: margin 0.5s ease;
+		//-webkit-transition: margin 0.5s ease; /* Safari */
+		&:hover{
+			cursor: pointer;
+			img{
+				border: 2px solid @blue;
+			}
 		}		
 	}
 	.courses-badges-list-item-image-inactive{
@@ -42,19 +47,17 @@
 			filter: gray; /* IE6-9 */
     		-webkit-filter: grayscale(100%);
     		opacity: 0.5; 
-    		// border: 1px #FFF solid;
-			// border-color: rgba(84, 75, 88, 0.5);
-		}		
+		}
+		&:hover{
+			cursor: pointer;
+		}			
 	}	
 }
 .courses-badges-list-title{
 	width:120px;
 	color: #FFF;
 	text-align: center;	
-	
-	// margin-right:4px;
-	// float: right;
-	
+
 	margin: auto;
 	margin-top: -30px;
 	font-size: 20px;
@@ -62,7 +65,8 @@
 	letter-spacing: 2px;
 	font-family: 'Exo 2', sans-serif;
 	background-color: rgba(84, 75, 88, 0.5);
-	
+	background-color: rgba(0, 0, 0, 0.2);
+
 	-webkit-border-top-left-radius: 4px;
 	-webkit-border-top-right-radius: 4px;
 	-moz-border-radius-topleft: 4px;
