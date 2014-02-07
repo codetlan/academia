@@ -41,10 +41,14 @@
 			text-align: center;
 		}
 	}
+	&:hover{
+		cursor: pointer;
+		background-color: (@blue * 0.8);
+	}
 }
-.cursos-menu-item-over{
+.cursos-menu-item-selected{
 	cursor: pointer;
-	background-color: (@blue * 0.9);
+	background-color: (@blue * .8);
 }
 
 // estilos del menu ProfileContainer.js
@@ -127,8 +131,12 @@
 			text-align: center;
 		}
 	}
+	&:hover{
+		background-color: (@dark * 0.5);
+		cursor: pointer;
+	}
 }
-.cursos-social-menu-item-over{
+.cursos-social-menu-item-selected{
 	background-color: (@dark * 0.5);
 	cursor: pointer;
 }

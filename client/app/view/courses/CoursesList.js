@@ -42,7 +42,6 @@ Ext.define('Cursos.view.courses.CoursesList', {
 							'</div>',
 							'<div class="courses-list-item-social">',								
 								'<div class="courses-list-item-social-title">{title}</div>',
-								'<div>&nbsp;</div>',
 								'<div><i class="icon-dollar"> </i>{price}.00</div>',
 							'</div>',
 						'</div>',
@@ -62,7 +61,6 @@ Ext.define('Cursos.view.courses.CoursesList', {
 							'</div>',
 							'<div class="courses-list-item-social">',
 								'<div class="courses-list-item-social-title">{title}</div>',
-								'<div>&nbsp;</div>',
 								'<div><i class="icon-dollar"> </i>{price}.00</div>',
 							'</div>',
 						'</div>',
@@ -89,6 +87,10 @@ Ext.define('Cursos.view.courses.CoursesList', {
 					'</tpl>',
 					'<div class="x-clear"></div>'
 				];
+				me.store = {
+	                type: 'courses',
+	                data: Meteor.user() && Meteor.user().profile.courses
+	            };
 			break;
 		}
 		return  tpl.join('');

@@ -18,8 +18,7 @@ Ext.define('Cursos.view.users.UserMenuList', {
 	].join(''),
 
 	itemSelector: 'div.cursos-menu-item',
-	// overCls: 'cursos-menu-item-over',
-	overItemCls: 'cursos-menu-item-over',
+	selectedItemCls: 'cursos-menu-item-selected',
 	store: {
 		type: 'menuitems',
 		data: [
@@ -28,14 +27,15 @@ Ext.define('Cursos.view.users.UserMenuList', {
 		// 	icon: 'icon-mail',
 		// 	badge: 8
 		// },
-		 {
-			option: 'Notificaciones',
-			icon: 'icon-bell',
-			badge: 9
-		}, {
+		//  {
+		// 	option: 'Notificaciones',
+		// 	icon: 'icon-bell',
+		// 	badge: 9
+		// }, 
+		{
 			option: 'Mis cursos',
 			icon: 'icon-ticket',
-			badge: 9
+			badge:  Meteor.user() && Meteor.user().profile.courses.length
 		}]
 	}
 });

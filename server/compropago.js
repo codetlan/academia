@@ -1,11 +1,10 @@
  var Future = Npm.require('fibers/future'),
-     request = Npm.require('request');
-
- var COMPROPAGO_DEVELOPMENT_KEY = 'e58dc4e347211',
+     request = Npm.require('request'),
+     COMPROPAGO_DEVELOPMENT_KEY = 'e58dc4e347211',
      COMPROPAGO_PRODUCTION_KEY = '0875847df0f31';
-     
+
  Meteor.methods({
-     compropagoCurl: function(productObj) {
+     compropagoCharge: function(chargeObject) {
          var future = new Future(),
              curl, getData;
          curl = function() {
@@ -17,7 +16,7 @@
                      'Authorization': 'Basic ' + auth,
                      'Content-Type': 'application/json'
                  },
-                 json: productObj
+                 json: chargeObject
              };
              request(options, function(error, response, body) {
                  if (!error && response.statusCode == 200) {

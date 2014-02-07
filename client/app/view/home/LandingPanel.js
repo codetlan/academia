@@ -182,21 +182,10 @@ Ext.define('Cursos.view.home.LandingPanel', {
 
             ].join('')
         }, {
-            xtype: 'toolbar',
-            border: false,
-            height: 60,
-            baseCls: 'cursos-landing-panel-search-toolbar',
-            items: ['CURSOS', '->', 'Buscar : ', {
-                xtype: 'searchtextfield'
-            }]
-        }, {
-            xtype: 'container',
-            height: 410,
-            cls: 'cursos-landing-panel-courseslist',
-            items: [{
-                xtype: 'courseslist',
-                templateType: 'landingPage'
-            }]
+            xtype:'coursescontanier',
+            templateType: 'landingPage',
+            toolbarText: 'Cursos',
+            height:470
         }, {
             xtype: 'component',
             height: 60,

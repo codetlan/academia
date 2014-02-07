@@ -11,6 +11,9 @@ Ext.define('Cursos.controller.Main', {
         ref: 'socialMenulist',
         selector: 'menupanel socialmenulist'
     }, {
+        ref: 'userMenulist',
+        selector: 'menupanel usermenulist'
+    }, {
         ref: 'mainPanel',
         selector: 'mainpanel'
     }],
@@ -46,6 +49,9 @@ Ext.define('Cursos.controller.Main', {
             },
             'mainpanel coursescontanier courseslist': {
                 itemclick: me.onCourseItemClick
+            },
+            'mainpanel #courseStand paymentcontainer creditcardform': {
+                paymentsuccess: me.onPaymentSuccess
             }
         });
         me.waitForMeteor(function() {
@@ -55,6 +61,35 @@ Ext.define('Cursos.controller.Main', {
             }
         });
 
+    },
+
+    onPaymentSuccess: function(form, win, paymentObject) {
+        var me = this,
+            mainContainer = me.getMainPanel().down('#mainContainer'),
+            myCoursesContainer = mainContainer.down('#myCourseStand'),
+            layout = mainContainer.layout,
+            course;
+        switch (paymentObject.type) {
+            case 'Course':
+                course = Courses.find({
+                    _id: paymentObject.id
+                }).fetch()[0];
+                //agregamos el badge y curso al usuario
+                Meteor.users.update({
+                    _id: Meteor.user()._id
+                }, {
+                    $addToSet: {
+                        "profile.courses": course,
+                        "profile.badges": {
+                            image: course.badge,
+                            active: false
+                        }
+                    }
+                });
+                myCoursesContainer.down('coursescontanier courseslist').getStore().loadData(Meteor.user().profile.courses);
+                layout.setActiveItem(0);
+                break;
+        }
     },
 
     onProfileContainerClick: function() {
@@ -68,6 +103,7 @@ Ext.define('Cursos.controller.Main', {
             mainContainer = me.getMainPanel().down('#mainContainer'),
             layout = mainContainer.layout;
 
+        me.getUserMenulist().getSelectionModel().deselectAll();
         switch (record.get('icon')) {
             case 'icon-logout':
                 me.onLogOutUser();
@@ -91,6 +127,8 @@ Ext.define('Cursos.controller.Main', {
         var me = this,
             mainContainer = me.getMainPanel().down('#mainContainer'),
             layout = me.getMainPanel().down('#mainContainer').layout;
+
+        me.getSocialMenulist().getSelectionModel().deselectAll();
         switch (record.get('icon')) {
             case 'icon-bell':
                 layout.setActiveItem(1);
@@ -125,8 +163,9 @@ Ext.define('Cursos.controller.Main', {
                 name: record.get('title'),
                 price: record.get('price'),
                 id: record.get('_id'),
-                type:'Course',
-                image: record.get('image')
+                type: 'Course',
+                image: record.get('image'),
+                badge: record.get('badge'),
             });
             return;
         }
@@ -149,28 +188,30 @@ Ext.define('Cursos.controller.Main', {
             if (err) {
                 Ext.Msg.alert('Error', 'No pudimos iniciar sesión intentalo de nuevo :)');
             } else {
-                me.getMain().layout.setActiveItem(1);
-                // seteamos los datos del usuario
-                var user = Meteor.user().profile;
 
-                data = {
-                    name: user.name,
-                    avatar: user.picture
-                };
-                me.getMain().down('menupanel').down('profilecontainer').update(data);
-                me.getMain().down('usercontainer').update(data);
-                me.getMain().down('badgeslist').update(user.badges);
+                window.location = '/';
 
-                me.addAdminMenu();
+                // me.getMain().layout.setActiveItem(1);
+                // // seteamos los datos del usuario
+                // var user = Meteor.user().profile;
+
+                // data = {
+                //     name: user.name,
+                //     avatar: user.picture
+                // };
+                // me.getMain().down('menupanel').down('profilecontainer').update(data);
+                // me.getMain().down('usercontainer').update(data);
+                // me.getMain().down('badgeslist').update(user.badges);
+                // me.getMainPanel().down('#mainContainer').down('#myCourseStand').down('courseslist').getStore().loadData(user.courses);
+                // me.addAdminMenu();
             }
         });
     },
     addAdminMenu: function() {
-        var me = this, store = me.getSocialMenulist().getStore();
+        var me = this,
+            store = me.getSocialMenulist().getStore();
 
-        if (Meteor.user().profile.role === "admin" && !!store.find('icon','icon-cog-alt')) {
-            // me.onShowAdmin();
-            
+        if (Meteor.user().profile.role === "admin" && !! store.find('icon', 'icon-cog-alt')) {
             var adminMenu = Ext.create('Cursos.model.MenuItem', {
                 option: 'Administración',
                 icon: 'icon-cog-alt'
@@ -196,9 +237,9 @@ Ext.define('Cursos.controller.Main', {
             body.unmask();
         }, 500);
     },
-    onSearchCourseFieldChange: function(textfiel, value) {
+    onSearchCourseFieldChange: function(textfield, value) {
         var me = this,
-            store = me.getStore('Courses');
+            store = textfield.up('coursescontanier').down('courseslist').getStore();
 
         //TODO: the suspend/resume hack can be removed once Filtering has been updated
         store.suspendEvents();

@@ -57,6 +57,7 @@ Ext.define('Cursos.view.users.CashForm', {
     buttons: [{
         text: 'Cancelar',
         scale: 'large',
+        ui:'toolbar',
         handler: function(btn) {
             var form = btn.up('form');
             form.getForm().reset();
@@ -84,10 +85,10 @@ Ext.define('Cursos.view.users.CashForm', {
             };
 
             form.getEl().mask('Procesando ...');
-            Meteor.call("compropagoCurl", obj, function(error, result) {
+            Meteor.call("compropagoCharge", obj, function(error, result) {
                 var instructions;
                 if (error) {
-                    Ext.Msg.alert('Error', 'No pudimos procesar el la petición de pago, intentalo de nuevo ...');
+                    Ext.Msg.alert('Error', 'No pudimos procesar la petición de pago, intentalo de nuevo ...');
                 } else {
                     // console.log(result);
                     instructions = result.payment_instructions;

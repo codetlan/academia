@@ -25,8 +25,10 @@ Ext.define('Cursos.view.Main', {
             items: [{
                 xtype: 'container',
                 layout: 'card',
+                itemId:'myCourseStand',
                 items: [{
                     xtype: 'coursescontanier',
+                    templateType:'myCourses',
                     toolbarText: 'Mis Cursos'
                 }]
             }, {

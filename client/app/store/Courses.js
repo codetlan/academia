@@ -8,5 +8,6 @@ Ext.define('Cursos.store.Courses',{
     requires: [
        	'Cursos.model.Course'
     ],
-    model:'Cursos.model.Course'
+    model:'Cursos.model.Course',
+    alias: 'store.courses'
 });

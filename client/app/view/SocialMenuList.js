@@ -7,6 +7,9 @@ Ext.define('Cursos.view.SocialMenuList', {
 	extend: 'Ext.view.View',
 	alias: 'widget.socialmenulist',
 
+	itemSelector :'div.cursos-social-menu-item',
+	selectedItemCls: 'cursos-social-menu-item-selected',
+
 	tpl: [
 		'<div class="cursos-social-menu-title">Social</div>',
 		'<tpl for=".">',
@@ -16,9 +19,7 @@ Ext.define('Cursos.view.SocialMenuList', {
 			'<div class="x-clear"></div>',
 		'</tpl>'
 	].join(''),
-	itemSelector :'div.cursos-social-menu-item',
-	// overCls:'cursos-social-menu-item-over',
-	overItemCls:'cursos-social-menu-item-over',
+	
 	store: {
 		type:'menuitems',
 		data: [{
