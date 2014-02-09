@@ -1,0 +1,64 @@
+@dark: #1D1E20;
+@blue: #0B80D0;
+@blue-border: #0E90DC;
+@dark-border:  #3D444C;
+@import url(http://fonts.googleapis.com/css?family=Exo+2);
+
+.cursos-comunity-list{
+	background: @dark-border url('../../../images/backgrounds/bg3.jpg');
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+	padding: 10px;
+	width: 100%;
+}
+.cursos-comunity-list-item{
+	//width: 300px;
+	float: left;
+	margin: 5px;
+	border-radius: 5px;
+	background-color: rgba(0,0,0,.5);
+	border: 10px solid transparent;
+	.cursos-comunity-list-item-avatar{
+		width: 95px;
+		//margin: auto;
+		float: left;
+		img{
+			border-radius:88px;
+			width: 88px;
+			height: 88px;
+			border: 6px #FFF solid;
+			border-color: rgba(0, 0, 0, 0.2);
+
+			transition: border-color 1s;
+			-webkit-transition: border-color 1s; /* Safari */
+		}		
+	}
+	.cursos-comunity-list-item-name{
+		margin-left: -10px;
+		color: #FFF;
+		float: left;
+		font-size: 16px;
+		font-family: 'Exo 2', sans-serif;
+		text-align: center;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		padding: 10px;
+		padding-top: 20px;
+		width: 220px;
+
+		span{
+			font-size: 12px;
+			text-align: center;
+		}
+	}
+	&:hover{
+		cursor: pointer;
+		background-color: rgba(0,0,0,.7);
+		img{
+			border-color: rgba(0, 0, 0, 0.5);
+			border-color: @blue;
+		}
+	}
+}
+

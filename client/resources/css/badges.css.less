@@ -20,20 +20,21 @@
 	display: block;
 	.courses-badges-list-item-image{
 		float: left;
-		margin: 9px;
+		margin: 9px;		
 		img{
-			border-radius:64px;
-			width: 64px;
-			height: 64px;
-			//transition: border 0.5s ease;
-			//-webkit-transition: border 0.5s ease; /* Safari */
+			border-radius:50%;
+			width: 77px;
+			height: 77px;
+			border: 5px solid rgba(0, 0, 0, 0.2);
+			transition: border-color 1s;
+			-webkit-transition: border-color 1s; /* Safari */
 		}
 		//transition: margin 0.5s ease;
 		//-webkit-transition: margin 0.5s ease; /* Safari */
 		&:hover{
 			cursor: pointer;
 			img{
-				border: 2px solid @blue;
+				border: 5px solid @blue;
 			}
 		}		
 	}
@@ -41,15 +42,21 @@
 		float: left;
 		margin: 9px;
 		img{
-			border-radius:64px;
-			width: 64px;
-			height: 64px;
+			border-radius:50%;
+			width: 77px;
+			height: 77px;
 			filter: gray; /* IE6-9 */
     		-webkit-filter: grayscale(100%);
-    		opacity: 0.5; 
+    		opacity: 0.5;
+    		border: 5px solid rgba(0, 0, 0, 0.2);
+			transition: border-color 1s;
+			-webkit-transition: border-color 1s; /* Safari */
 		}
 		&:hover{
 			cursor: pointer;
+			img{
+				border: 5px solid @blue;
+			}
 		}			
 	}	
 }

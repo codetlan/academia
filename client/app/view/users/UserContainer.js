@@ -76,5 +76,9 @@ Ext.define('Cursos.view.users.UserContainer', {
         title: 'Comentarios',
         bodyPadding: 10,
         html: ['<div id="disqus_thread"></div>'].join('')
-    }]
+    }],
+
+    updateBadges: function (badges) {
+        this.down('badgeslist').update(badges);
+    }
 });

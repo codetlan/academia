@@ -12,7 +12,7 @@ Accounts.onCreateUser(function (options, user) {
         user.profile.badges = [{
             image:'images/badges/Arrow.png',
             active:true,
-            legend:'!Bienvenido al Dojo!'
+            legend:'Bienvenido al Dojo'
         }];
         // le asignamos el curso inicial
         user.profile.courses = [];

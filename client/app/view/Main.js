@@ -20,7 +20,7 @@ Ext.define('Cursos.view.Main', {
             itemId: 'mainContainer',
             autoScroll: true,
             layout: 'card',
-            activeItem: 0,
+            activeItem: 4,
             border: false,
             items: [{
                 xtype: 'container',
@@ -35,11 +35,7 @@ Ext.define('Cursos.view.Main', {
                 xtype: 'panel',
                 title: 'Notificaciones'
             }, {
-                xtype: 'panel',
-                layout: 'fit',
-                items: [{
-                    xtype: 'usercontainer'
-                }]
+                xtype: 'usercontainer'
             }, {
                 xtype: 'container',
                 layout: 'card',
@@ -52,8 +48,7 @@ Ext.define('Cursos.view.Main', {
                     xtype:'paymentcontainer'
                 }]
             }, {
-                xtype: 'panel',
-                title: 'Comunidad'
+                xtype: 'comunitycontainer'
             }]
         }
         // {

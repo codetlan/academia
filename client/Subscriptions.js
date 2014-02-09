@@ -10,13 +10,15 @@ Ext.onReady(function() {
                     userCoursesIds = [];
 
                 if (Meteor.userId()) { //quitamos los cursos en los que esta el usuario                    
-                    
+
                     Ext.each(Meteor.user().profile.courses, function(course) {
-                    	userCoursesIds.push(course._id);
+                        userCoursesIds.push(course._id);
                     }, this);
 
                     cursor = Courses.find({
-                        _id: {$nin: userCoursesIds}
+                        _id: {
+                            $nin: userCoursesIds
+                        }
                     });
                 } else {
                     cursor = Courses.find({});
@@ -61,6 +63,18 @@ Ext.onReady(function() {
                         var code = codesStore.findRecord('_id', id);
                         codesStore.remove(code);
                     }
+                });
+            }),
+            Users: Meteor.subscribe('users', function() {
+                var usersStore = Ext.data.StoreManager.lookup('Users'),
+                    cursor = Meteor.users.find({});
+
+                cursor.observeChanges({
+                    added: function(id, user) {
+                        user['_id'] = id;
+                        var user = Ext.create('Cursos.model.User', user);
+                        usersStore.add(user);
+                    },
                 });
             })
         }

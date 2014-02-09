@@ -12,7 +12,7 @@ Ext.define('Cursos.view.BadgesList', {
 	html:'<div class="courses-badges-list-title">Medallas</div>',
 	tpl: [
 		'<tpl for=".">',
-			'<div class="courses-badges-list-item" data-qtip="{legend}">',
+			'<div class="courses-badges-list-item" data-qtip="{legend}" data-qwidth="200" data-qclass="courses-qtips">',
 				'<tpl if="active">',
 					'<div class="courses-badges-list-item-image">',
 				'<tpl else>',

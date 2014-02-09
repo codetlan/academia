@@ -44,6 +44,9 @@ Ext.define('Cursos.controller.Main', {
             'mainpanel toolbar #searchCourseField': {
                 change: me.onSearchCourseFieldChange
             },
+            'mainpanel toolbar #searchUserField': {
+                change: me.onSearchUserFieldChange
+            },
             'profilecontainer': {
                 click: me.onProfileContainerClick
             },
@@ -52,6 +55,9 @@ Ext.define('Cursos.controller.Main', {
             },
             'mainpanel #courseStand paymentcontainer creditcardform': {
                 paymentsuccess: me.onPaymentSuccess
+            },
+            'mainpanel comunitycontainer comunitylist':{
+                itemclick: me.onComunityListClick
             }
         });
         me.waitForMeteor(function() {
@@ -83,7 +89,7 @@ Ext.define('Cursos.controller.Main', {
                         "profile.badges": {
                             image: course.badge,
                             active: false,
-                            legend:'Poder legendario ' + course.title
+                            legend: 'Poder legendario ' + course.title
                         }
                     }
                 });
@@ -116,6 +122,7 @@ Ext.define('Cursos.controller.Main', {
                 break;
             case 'icon-users':
                 layout.setActiveItem(4);
+                mainContainer.down('comunitycontainer').layout.setActiveItem(0);
                 break;
             case 'icon-cog-alt':
                 me.onShowAdmin();
@@ -248,9 +255,39 @@ Ext.define('Cursos.controller.Main', {
         store.resumeEvents();
         store.filter([{
             fn: function(record) {
-                return record.get('description').indexOf(value) != -1;
+                var description = record.get('description').toLowerCase(),
+                    title = record.get('title').toLowerCase(),
+                    v = value.toLowerCase();
+                return (description.indexOf(v) != -1) || (title.indexOf(v) != -1);
             }
         }]);
         store.sort('title', 'ASC');
+    },
+    onSearchUserFieldChange: function(textfield, value) {
+        var me = this,
+            store = textfield.up('comunitycontainer').down('comunitylist').getStore();
+
+        //TODO: the suspend/resume hack can be removed once Filtering has been updated
+        store.suspendEvents();
+        store.clearFilter();
+        store.resumeEvents();
+        store.filter([{
+            fn: function(record) {
+                var name = record.get('name').toLowerCase(),
+                    email = record.get('email').toLowerCase(),
+                    v = value.toLowerCase();
+                return (name.indexOf(v) != -1) || (email.indexOf(v) != -1);
+            }
+        }]);
+        store.sort('name', 'ASC');
+    },
+    onComunityListClick: function (view, record, item, index, e) {
+        var me = this,
+            comunityContainer = view.up('comunitycontainer'),
+            userContainer = comunityContainer.down('usercontainer');
+            
+            comunityContainer.layout.setActiveItem(1);
+            userContainer.update(record.getData());
+            userContainer.updateBadges(record.get('badges'));
     }
 });

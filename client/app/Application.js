@@ -17,6 +17,7 @@ Ext.define('Cursos.Application', {
         'Agendas',
         'MenuItems',
         'FileTypes',
-        'Codes'
+        'Codes',
+        'Users'
     ]
 });
