@@ -1,9 +1,9 @@
 /**
- * @class Cursos.view.users.ComunityLis
+ * @class Cursos.view.users.ComunityList
  * @extends Ext.view.View
  * This is the dataview for listing all the users in the academia
  */
-Ext.define('Cursos.view.users.ComunityLis', {
+Ext.define('Cursos.view.users.ComunityList', {
     extend: 'Ext.view.View',
 
     alias: 'widget.comunitylist',
@@ -17,7 +17,6 @@ Ext.define('Cursos.view.users.ComunityLis', {
 		idProperty: '_id'
 	},
 
-    overItemCls: 'cursos-comunity-list-item-over',
     itemSelector: 'div.cursos-comunity-list-item',
     emptyText: 'No hay usuarios :(',
 
