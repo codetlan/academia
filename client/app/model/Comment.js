@@ -13,6 +13,7 @@ Ext.define('Cursos.model.Comment', {
         { name:'commentableType', type:'string' },
         { name:'commentableId', type:'string' },
         { name:'userName', type:'string' },
+        { name:'avatar', type:'string' },
         { name:'createdAt', type:'date' },
         { name: 'updatedAt',	type: 'date'}
     ]

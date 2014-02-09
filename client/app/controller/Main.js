@@ -56,8 +56,11 @@ Ext.define('Cursos.controller.Main', {
             'mainpanel #courseStand paymentcontainer creditcardform': {
                 paymentsuccess: me.onPaymentSuccess
             },
-            'mainpanel comunitycontainer comunitylist':{
+            'mainpanel comunitycontainer comunitylist': {
                 itemclick: me.onComunityListClick
+            },
+            'commentcomponent': {
+                oncomment: me.onComment
             }
         });
         me.waitForMeteor(function() {
@@ -196,22 +199,7 @@ Ext.define('Cursos.controller.Main', {
             if (err) {
                 Ext.Msg.alert('Error', 'No pudimos iniciar sesión intentalo de nuevo :)');
             } else {
-
                 window.location = '/';
-
-                // me.getMain().layout.setActiveItem(1);
-                // // seteamos los datos del usuario
-                // var user = Meteor.user().profile;
-
-                // data = {
-                //     name: user.name,
-                //     avatar: user.picture
-                // };
-                // me.getMain().down('menupanel').down('profilecontainer').update(data);
-                // me.getMain().down('usercontainer').update(data);
-                // me.getMain().down('badgeslist').update(user.badges);
-                // me.getMainPanel().down('#mainContainer').down('#myCourseStand').down('courseslist').getStore().loadData(user.courses);
-                // me.addAdminMenu();
             }
         });
     },
@@ -281,13 +269,29 @@ Ext.define('Cursos.controller.Main', {
         }]);
         store.sort('name', 'ASC');
     },
-    onComunityListClick: function (view, record, item, index, e) {
+    onComunityListClick: function(view, record, item, index, e) {
         var me = this,
             comunityContainer = view.up('comunitycontainer'),
             userContainer = comunityContainer.down('usercontainer');
-            
-            comunityContainer.layout.setActiveItem(1);
-            userContainer.update(record.getData());
-            userContainer.updateBadges(record.get('badges'));
+
+        comunityContainer.layout.setActiveItem(1);
+        userContainer.update(record.getData());
+        userContainer.updateBadges(record.get('badges'));
+    },
+
+    onComment: function(cmp, value, commentableType, commentableId) {
+        var values = {
+            comment:value,
+            image:'',
+            userId: Meteor.userId(),
+            commentableType: commentableType,
+            commentableId: commentableId,
+            userName: Meteor.user().profile.name,
+            avatar: Meteor.user().profile.picture,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        };
+
+        Comments.insert(values);
     }
 });

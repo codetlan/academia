@@ -18,6 +18,7 @@ Ext.define('Cursos.Application', {
         'MenuItems',
         'FileTypes',
         'Codes',
+        'Comments',
         'Users'
     ]
 });

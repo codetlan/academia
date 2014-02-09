@@ -19,20 +19,16 @@ Ext.define('Cursos.view.courses.CommentsContanier', {
     },
 
     buildItems: function() {
-        return [{
-            xtype: 'commentslist',
-            region: 'center'
-        }, {
+        return [ {
             xtype: 'container',
             region: 'north',
-            height: 200,
-            items: [{
-                xtype: 'titlecomponent',
-                title: 'Comentarios',
-                region: 'north'
-            }, {
+            height: 120,
+            items: [ {
                 xtype: 'commentcomponent'
             }]
+        },{
+            xtype: 'commentslist',
+            region: 'center'
         }]
     }
 });

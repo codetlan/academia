@@ -1,6 +1,4 @@
 // aqui se controla como se agregan los items a los stores de extjs
-
-
 Ext.onReady(function() {
     Cursos = {
         subs: {
@@ -53,8 +51,8 @@ Ext.onReady(function() {
                 cursor.observeChanges({
                     added: function(id, code) {
                         code['_id'] = id;
-                        var course = Ext.create('Cursos.model.Code', code);
-                        codesStore.add(course);
+                        var code = Ext.create('Cursos.model.Code', code);
+                        codesStore.add(code);
                     },
                     changed: function(id, code) {
                         codesStore.findRecord('_id', id).set(code);
@@ -76,7 +74,18 @@ Ext.onReady(function() {
                         usersStore.add(user);
                     },
                 });
-            })
+            }),
+            Comments: Meteor.subscribe('comments', function() {
+                var commentsStore = Ext.data.StoreManager.lookup('Comments'),
+                    cursor = Comments.find({});
+                cursor.observeChanges({
+                    added: function(id, comment) {
+                        comment['_id'] = id;
+                        var comment = Ext.create('Cursos.model.Comment', comment);
+                        commentsStore.add(comment);
+                    }
+                });
+            }),
         }
     }
 });
