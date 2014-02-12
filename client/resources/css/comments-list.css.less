@@ -14,8 +14,7 @@
         width: 60px;
         img {
             border-radius: 50%;
-            border: 3px #FFF solid;
-            border-color: rgba(0, 0, 0, 0.2);
+            border: 3px rgba(0, 0, 0, 0.2) solid;
             transition: border-color 1s;
             /* Safari */
             -webkit-transition: border-color 1s;
@@ -29,7 +28,7 @@
         }
     }
     .cursos-comments-list-item-name {
-    	@pad: 70px;
+        @pad: 70px;
         float: left;
         margin-left: 10px;
         margin-top: -16px;
@@ -37,9 +36,57 @@
         div {
             color:rgba(0, 0, 0, .9);
             margin-top: -15px;
-
         }
     }
     .cursos-comments-list-item-comments {
+        @pad: 70px;
+        float: right;
+        width: calc(~'100% - @{pad}');
+        margin-top: 20px;        
+        display:inline-block;
+        background: #EDEFF4;
+        .cursos-comments-list-item-comments-comment{
+            width: 100%;           
+            margin-top: 5px;
+            margin-bottom: 5px;      
+            img {
+                width: 32px;
+                float: left;               
+            }
+            div {
+                @padd: 45px;
+                padding: 5px;
+                float: left;
+                border-bottom: 1px #FFF solid;
+                width: calc(~'100% - @{padd}');
+                margin-left: 10px;
+                font-size: 11px;
+            }
+        }
+    }
+    .cursos-comments-list-item-comment-zone {
+        @pad: 70px;
+        margin-top: 0px;
+        float: right;
+        width: calc(~'100% - @{pad}');
+        display: block;
+        background: #EDEFF4;
+        div {
+            float: left;
+            img {
+                width: 32px;
+                //border-radius: 2px;
+                //border: 1px rgba(0, 0, 0, 0.2) solid;
+            }
+        }
+        .cursos-comments-list-item-comment-zone-input {
+            @padd: 45px;
+            width: calc(~'100% - @{padd}');
+            input {
+                width: 100%;
+                margin-left: 10px;
+                margin-top: 4px;
+            }
+        }
     }
 }

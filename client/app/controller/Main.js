@@ -61,6 +61,9 @@ Ext.define('Cursos.controller.Main', {
             },
             'commentcomponent': {
                 oncomment: me.onComment
+            },
+            'commentslist': {
+                commentoncomment: me.addCommentOnComment
             }
         });
         me.waitForMeteor(function() {
@@ -281,8 +284,8 @@ Ext.define('Cursos.controller.Main', {
 
     onComment: function(cmp, value, commentableType, commentableId) {
         var values = {
-            comment:value,
-            image:'',
+            comment: value,
+            image: '',
             userId: Meteor.userId(),
             commentableType: commentableType,
             commentableId: commentableId,
@@ -290,8 +293,27 @@ Ext.define('Cursos.controller.Main', {
             avatar: Meteor.user().profile.picture,
             createdAt: new Date(),
             updatedAt: new Date(),
+            comments:[]
         };
 
         Comments.insert(values);
+    },
+    addCommentOnComment: function(view, record, value) {
+        if(!value){
+            return;
+        }
+        Comments.update({
+            _id: record.get('_id')
+        }, {
+            $addToSet: {
+                "comments": {
+                    comment: value,
+                    userName: Meteor.user().profile.name,
+                    avatar: Meteor.user().profile.picture,
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                }
+            }
+        });
     }
 });
