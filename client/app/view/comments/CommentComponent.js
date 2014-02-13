@@ -12,7 +12,7 @@ Ext.define('Cursos.view.courses.CommentComponent', {
     },
 
     config: {
-        commentableType: undefined,
+        commentableType: 'User',
         commentableId: undefined
     },
 
@@ -48,9 +48,8 @@ Ext.define('Cursos.view.courses.CommentComponent', {
                     tooltip: 'Dejar comentario',
                     handler: function(btn) {
                         var component =  btn.up('commentcomponent'),
-                            textarea = component.down('textarea');
-                            
-                        component.fireEvent('oncomment', this, textarea.getValue(), 'User', Meteor.userId());
+                            textarea = component.down('textarea');                            
+                        component.fireEvent('oncomment', component, textarea.getValue(), component.getCommentableType(), component.getCommentableId());
                     }
                 }
             ]

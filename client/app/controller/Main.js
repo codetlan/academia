@@ -275,7 +275,17 @@ Ext.define('Cursos.controller.Main', {
     onComunityListClick: function(view, record, item, index, e) {
         var me = this,
             comunityContainer = view.up('comunitycontainer'),
-            userContainer = comunityContainer.down('usercontainer');
+            userContainer = comunityContainer.down('usercontainer'),
+            commentsList = userContainer.down('commentslist'),
+            userId = record.get('_id'),
+            comments = Comments.find({
+                commentableType: 'User',
+                commentableId: userId
+            }).fetch();
+
+        commentsList.getStore().loadData(comments);
+        userContainer.down('commentcomponent').setCommentableType('User');
+        userContainer.down('commentcomponent').setCommentableId(userId);
 
         comunityContainer.layout.setActiveItem(1);
         userContainer.update(record.getData());
@@ -293,15 +303,18 @@ Ext.define('Cursos.controller.Main', {
             avatar: Meteor.user().profile.picture,
             createdAt: new Date(),
             updatedAt: new Date(),
-            comments:[]
+            comments: []
         };
 
         Comments.insert(values);
     },
-    addCommentOnComment: function(view, record, value) {
-        if(!value){
-            return;
+    addCommentOnComment: function(view, record, value, target) {
+        var el;
+
+        if (!value) {
+            return false;
         }
+
         Comments.update({
             _id: record.get('_id')
         }, {
@@ -315,5 +328,17 @@ Ext.define('Cursos.controller.Main', {
                 }
             }
         });
+        // agregramos el comentario al template
+        el = [
+            '<div class="cursos-comments-list-item-comments-comment">',
+            '<img src="' + Meteor.user().profile.picture + '"/>',
+            '<div>',
+            '<b>' + Meteor.user().profile.name + '</b> <br />',
+            value,
+            '</div>',
+            '</div>'
+        ].join('');
+
+        Ext.fly(target).up('div.cursos-comments-list-item').down('div.cursos-comments-list-item-comments').createChild(el);
     }
 });

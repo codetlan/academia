@@ -20,7 +20,7 @@ Ext.define('Cursos.view.Main', {
             itemId: 'mainContainer',
             autoScroll: true,
             layout: 'card',
-            activeItem: 2,
+            activeItem: 0,
             border: false,
             items: [{
                 xtype: 'container',

@@ -28,27 +28,30 @@ Ext.define('Cursos.view.users.CreditCardForm', {
     },
     items: [{
         xtype: 'shoppincarfieldset'
-    }, {
-        xtype: 'fieldset',
-        title: '<b>Tipo de tarjeta</b>',
-        items: [{
-            xtype: 'radiogroup',
-            defaults: {
-                name: 'ccType'
-            },
-            items: [{
-                inputValue: 'visa',
-                boxLabel: 'VISA',
-                checked: true
-            }, {
-                inputValue: 'mastercard',
-                boxLabel: 'MasterCard'
-            }, {
-                inputValue: 'amex',
-                boxLabel: 'American Express'
-            }]
-        }]
-    }, {
+    }, 
+
+    // {
+    //     xtype: 'fieldset',
+    //     title: '<b>Tipo de tarjeta</b>',
+    //     items: [{
+    //         xtype: 'radiogroup',
+    //         defaults: {
+    //             name: 'ccType'
+    //         },
+    //         items: [{
+    //             inputValue: 'visa',
+    //             boxLabel: 'VISA',
+    //             checked: true
+    //         }, {
+    //             inputValue: 'mastercard',
+    //             boxLabel: 'MasterCard'
+    //         }, {
+    //             inputValue: 'amex',
+    //             boxLabel: 'American Express'
+    //         }]
+    //     }]
+    // }
+    , {
         xtype: 'fieldset',
         title: '<b>Datos de la tarjeta</b>',
         items: [{
@@ -77,7 +80,7 @@ Ext.define('Cursos.view.users.CreditCardForm', {
                 // labelWidth: 175,
                 layout: 'hbox',
                 defaults: {
-                    baseCls: 'cursos-form-fields',
+                    //baseCls: 'cursos-form-fields',
                     margin: '0 0 0 0'
                 },
                 items: [{

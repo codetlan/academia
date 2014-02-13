@@ -15,7 +15,7 @@ Ext.define('Cursos.model.Comment', {
         { name:'userName', type:'string' },
         { name:'avatar', type:'string' },
         { name:'createdAt', type:'date' },
-        { name: 'updatedAt',    type: 'date'},
-        { name: 'comments', type:'array'}
+        { name:'updatedAt',    type: 'date'},
+        { name:'comments', type:'array'}
     ]
 });
