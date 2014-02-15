@@ -16,6 +16,9 @@ Ext.define('Cursos.controller.Main', {
     }, {
         ref: 'mainPanel',
         selector: 'mainpanel'
+    },{
+        ref:'commentsList',
+        selector:'commentslist'
     }],
 
     onLaunch: function() {
@@ -107,7 +110,13 @@ Ext.define('Cursos.controller.Main', {
 
     onProfileContainerClick: function() {
         var me = this,
-            layout = me.getMainPanel().down('#mainContainer').layout;
+            layout = me.getMainPanel().down('#mainContainer').layout,
+            comments = Comments.find({
+                commentableType: 'User',
+                commentableId: Meteor.userId()
+            }).fetch();
+
+        me.getCommentsList().getStore().loadData(comments);
         layout.setActiveItem(2);
     },
 
@@ -305,8 +314,9 @@ Ext.define('Cursos.controller.Main', {
             updatedAt: new Date(),
             comments: []
         };
-
+        alert(1);
         Comments.insert(values);
+        alert(2);
     },
     addCommentOnComment: function(view, record, value, target) {
         var el;

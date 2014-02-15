@@ -47,9 +47,13 @@ Ext.define('Cursos.view.courses.CommentComponent', {
                     text: '<i class="icon-comment"></i>Comentar',
                     tooltip: 'Dejar comentario',
                     handler: function(btn) {
-                        var component =  btn.up('commentcomponent'),
-                            textarea = component.down('textarea');                            
-                        component.fireEvent('oncomment', component, textarea.getValue(), component.getCommentableType(), component.getCommentableId());
+                        var component = btn.up('commentcomponent'),
+                            textarea = component.down('textarea'),
+                            value = textarea.getValue();
+                        if (value) {
+                            component.fireEvent('oncomment', component, value, component.getCommentableType(), component.getCommentableId());
+                            textarea.reset();
+                        }
                     }
                 }
             ]

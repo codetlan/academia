@@ -77,12 +77,16 @@ Ext.onReady(function() {
             }),
             Comments: Meteor.subscribe('comments', function() {
                 var commentsStore = Ext.data.StoreManager.lookup('Comments'),
-                    cursor = Comments.find({});
+                    cursor = Comments.find({
+                        //commentableType: 'User',
+                        //commentableId: Meteor.userId()
+                    });
                 cursor.observeChanges({
                     added: function(id, comment) {
                         comment['_id'] = id;
                         var comment = Ext.create('Cursos.model.Comment', comment);
                         commentsStore.add(comment);
+                        //alert(23);
                     }
                 });
             }),
