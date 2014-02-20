@@ -16,9 +16,9 @@ Ext.define('Cursos.controller.Main', {
     }, {
         ref: 'mainPanel',
         selector: 'mainpanel'
-    },{
-        ref:'commentsList',
-        selector:'commentslist'
+    }, {
+        ref: 'commentsList',
+        selector: 'commentslist'
     }],
 
     onLaunch: function() {
@@ -303,20 +303,25 @@ Ext.define('Cursos.controller.Main', {
 
     onComment: function(cmp, value, commentableType, commentableId) {
         var values = {
-            comment: value,
-            image: '',
-            userId: Meteor.userId(),
-            commentableType: commentableType,
-            commentableId: commentableId,
-            userName: Meteor.user().profile.name,
-            avatar: Meteor.user().profile.picture,
-            createdAt: new Date(),
-            updatedAt: new Date(),
-            comments: []
-        };
-        alert(1);
-        Comments.insert(values);
-        alert(2);
+                comment: value,
+                image: '',
+                userId: Meteor.userId(),
+                commentableType: commentableType,
+                commentableId: commentableId,
+                userName: Meteor.user().profile.name,
+                avatar: Meteor.user().profile.picture,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+                comments: []
+            },
+            commentsStore;
+
+        values['_id'] = Comments.insert(values);
+        
+        //insertamos el comentario en la vista del usuario
+        commentsStore = Ext.data.StoreManager.lookup('Comments');
+        comment = Ext.create('Cursos.model.Comment', values);
+        commentsStore.add(comment);
     },
     addCommentOnComment: function(view, record, value, target) {
         var el;
@@ -342,10 +347,7 @@ Ext.define('Cursos.controller.Main', {
         el = [
             '<div class="cursos-comments-list-item-comments-comment">',
             '<img src="' + Meteor.user().profile.picture + '"/>',
-            '<div>',
-            '<b>' + Meteor.user().profile.name + '</b> <br />',
-            value,
-            '</div>',
+            '<div>', '<b>' + Meteor.user().profile.name + '</b> <br />', value, '</div>',
             '</div>'
         ].join('');
 

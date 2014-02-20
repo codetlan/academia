@@ -1,9 +1,7 @@
 // estilos del menu MenuPanel.js
 
-@dark: #1D1E20;
-@blue: #0B80D0;
-@blue-border: #0E90DC;
-@dark-border:  #3D444C;
+@import  "_base.css.less";
+
 
 .cursos-menu-panel{
 	background-color: @dark;
@@ -43,12 +41,18 @@
 	}
 	&:hover{
 		cursor: pointer;
-		background-color: (@blue * 0.8);
+		background-color: (@blue * 0.9);
+		i{
+			color: #FFF;
+		}
 	}
 }
 .cursos-menu-item-selected{
 	cursor: pointer;
-	background-color: (@blue * .8);
+	background-color: (@blue * 0.9);
+	i{
+		color: #FFF;
+	}
 }
 
 // estilos del menu ProfileContainer.js
@@ -139,4 +143,7 @@
 .cursos-social-menu-item-selected{
 	background-color: (@dark * 0.5);
 	cursor: pointer;
+	i{
+		color: @blue;
+	}
 }

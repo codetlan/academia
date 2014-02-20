@@ -29,7 +29,7 @@ Ext.define('Cursos.view.courses.CommentComponent', {
             xtype: 'textarea',
             title: 'Comentarios',
             width: '99%',
-            emptyText: 'Agregar comentario al usuario',
+            emptyText: 'Agregar comentario al usuario ...',
             style: {
                 'margin': 'auto'
             }

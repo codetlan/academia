@@ -58,14 +58,15 @@ Ext.define('Cursos.view.users.UserContainer', {
             flex:1
         }]
     }, {
-        xtype: 'panel',
-        region: 'center',
-        title: 'Comentarios',
+        // xtype: 'panel',
+        // region: 'center',
+        // //title: 'Comentarios',
         bodyPadding: 5,
-        layout:'fit',
-        items:{
-            xtype:'commentscontanier'
-        }
+        // layout:'fit',
+        // items:{
+            xtype:'commentscontanier',
+            region: 'center'
+        //}
     }],
 
     updateBadges: function (badges) {
