@@ -8,7 +8,7 @@ Ext.define('Cursos.view.courses.CoursesContanier', {
     alias: 'widget.coursescontanier',
 
     toolbarText: 'Cursos Disponibles',
-    cls: 'cursos-landing-panel-courseslist',
+    cls: 'cursos-course-container-main',
 
     templateType: 'courseList',
 
