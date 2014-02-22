@@ -12,16 +12,20 @@ Ext.define('Cursos.view.MenuPanel', {
     ],
 
     title: 'Menu',
-    collapsible: true,
+    //frame: false,
+    //border: false,
+
+    width: 200,
+    maxwidth: 250,
     region: 'west',
-    frame:false,
-    border:false,
-    bodyCls:'cursos-menu-panel',
+    collapsible: true,
+
+    bodyCls: 'cursos-menu-panel',
     items: [{
-        xtype:'profilecontainer'
+        xtype: 'profilecontainer'
     }, {
         xtype: 'usermenulist'
-    },{
-        xtype:'socialmenulist'
+    }, {
+        xtype: 'socialmenulist'
     }]
 });

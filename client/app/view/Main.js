@@ -30,6 +30,8 @@ Ext.define('Cursos.view.Main', {
                     xtype: 'coursescontanier',
                     templateType:'myCourses',
                     toolbarText: 'Mis Cursos'
+                },{
+                    xtype:'coursepanel'
                 }]
             }, {
                 xtype: 'panel',
@@ -50,20 +52,6 @@ Ext.define('Cursos.view.Main', {
             }, {
                 xtype: 'comunitycontainer'
             }]
-        }
-        // {
-        //     xtype: 'editorpanel',
-        //     title: 'code',
-        //     collapsible: true,
-        //     collapsed: true,
-        //     width: 400,
-        //     maxwidth: 800,
-        //     region: 'east',
-        //     editorConfig: {
-        //         mode: "text/javascript",
-        //         theme: 'solarized dark',
-        //         readOnly: true
-        //     }
-        // }
+        }        
     ]
 });

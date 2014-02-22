@@ -9,5 +9,10 @@ Ext.define('Cursos.store.Agendas', {
 		'Cursos.model.Agenda'
 	],
 	model: 'Cursos.model.Agenda',
-	groupField: 'module'
+	//groupField: 'module',
+	sortOnLoad: true,
+    sorters: {
+        property: 'order',
+        direction: 'ASC'
+    }
 });

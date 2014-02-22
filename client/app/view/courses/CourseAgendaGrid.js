@@ -14,7 +14,7 @@ Ext.define('Cursos.view.courses.CourseAgendaGrid', {
 	initComponent: function(argument) {
 		var me = this;
 		me.columns = me.buildColumns();
-		me.features = [{
+		me.featuressss = [{
 			ftype: 'grouping'
 		}];
 		me.callParent();

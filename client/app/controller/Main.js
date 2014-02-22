@@ -158,6 +158,7 @@ Ext.define('Cursos.controller.Main', {
                 break;
             case 'icon-ticket':
                 layout.setActiveItem(0);
+                 mainContainer.down('#myCourseStand').layout.setActiveItem(0);
                 break;
             default:
                 break;
@@ -171,11 +172,20 @@ Ext.define('Cursos.controller.Main', {
         var me = this,
             win,
             target = e.getTarget(),
-            stand;
+            stand, store;
 
         // si se trata de tomar el curso
         if (target.className == "courses-list-item-name-get-course-btn") {
-            alert('tomar curso');
+            stand = view.up('#myCourseStand');
+            stand.layout.setActiveItem(1);
+            data = Agendas.find({
+                courseId: record.get('_id')
+            }, {
+                sort: {
+                    order: 1
+                }
+            }).fetch();
+            this.getStore('Agendas').loadData(data);
             return;
         }
         // si se trata de comprar el curso
@@ -243,7 +253,7 @@ Ext.define('Cursos.controller.Main', {
         setTimeout(function() {
             fn();
             body.unmask();
-        }, 500);
+        }, 900);
     },
     onSearchCourseFieldChange: function(textfield, value) {
         var me = this,
@@ -303,21 +313,21 @@ Ext.define('Cursos.controller.Main', {
 
     onComment: function(cmp, value, commentableType, commentableId) {
         var values = {
-                comment: value,
-                image: '',
-                userId: Meteor.userId(),
-                commentableType: commentableType,
-                commentableId: commentableId,
-                userName: Meteor.user().profile.name,
-                avatar: Meteor.user().profile.picture,
-                createdAt: new Date(),
-                updatedAt: new Date(),
-                comments: []
-            },
+            comment: value,
+            image: '',
+            userId: Meteor.userId(),
+            commentableType: commentableType,
+            commentableId: commentableId,
+            userName: Meteor.user().profile.name,
+            avatar: Meteor.user().profile.picture,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            comments: []
+        },
             commentsStore;
 
         values['_id'] = Comments.insert(values);
-        
+
         //insertamos el comentario en la vista del usuario
         commentsStore = Ext.data.StoreManager.lookup('Comments');
         comment = Ext.create('Cursos.model.Comment', values);
