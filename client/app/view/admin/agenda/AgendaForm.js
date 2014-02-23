@@ -27,12 +27,14 @@ Ext.define('Cursos.view.admin.courses.AgendaForm', {
 		// xtype:'numberfield',
 		emptyText: 'Orden',
 		fieldLabel: 'Orden'
-	},{
-		name: 'module',
-		value:'Introdución',
-		emptyText: 'Modulo',
-		fieldLabel: 'Modulo'
-	}, {
+	},
+	// {
+	// 	name: 'module',
+	// 	value:'Introdución',
+	// 	emptyText: 'Modulo',
+	// 	fieldLabel: 'Modulo'
+	// }, 
+	{
 		name: 'submodule',
 		value:'Instalación',
 		emptyText: 'Lección',

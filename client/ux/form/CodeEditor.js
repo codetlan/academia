@@ -4,47 +4,48 @@
  * This is the texarea for code editing
  */
 Ext.define('Ext.ux.form.CodeEditor', {
-        extend: 'Ext.form.field.TextArea',
-        xtype: 'codeeditor',
+    extend: 'Ext.form.field.TextArea',
+    xtype: 'codeeditor',
 
-        region: 'center',
-        layout: 'fit',
-        margins: '0 4 0 0',
-        autoHeight: true,
+    region: 'center',
+    layout: 'fit',
+    margins: '0 4 0 0',
+    autoHeight: true,
 
-        config: {
-                codeEditor: null,
-        },
+    config: {
+        codeEditor: null,
+    },
 
-        editorConfig: null,
+    editorConfig: null,
 
-        initComponent: function() {
-                this.addEvents('onContentChange');
-                this.callParent();
-        },
+    initComponent: function() {
+        this.addEvents('onContentChange');
+        this.callParent();
+    },
 
-        listeners: {
-                resize: function() {
-                        var me = this;
-                        if (!this.getCodeEditor()) {
-                                var targetEl = this.getId() + "-inputEl",
-                                        defaults = {
-                                                mode: "text/javascript",
-                                                theme: 'solarized dark',
-                                                indentUnit: 4,
-                                                tabMode: 'indent',
-                                                lineNumbers: true,
-                                                gutter: true,
-                                                fixedGutter: true,
-                                                smartIndent: true
-                                        };
-                                Ext.apply(defaults, me.editorConfig);
-                                this.setCodeEditor(CodeMirror.fromTextArea(document.getElementById(targetEl), defaults));
-                                this.getCodeEditor().on('change', function(editor, e) {
-                                        me.fireEvent('onContentChange', me, editor);
-                                });
+    listeners: {
+        resize: function() {
+            var me = this;
+            if (!this.getCodeEditor()) {
+                var targetEl = this.getId() + "-inputEl",
+                    defaults = {
+                        mode: "text/javascript",
+                        theme: 'solarized dark',
+                        indentUnit: 2,
+                        tabMode: 'indent',
+                        lineNumbers: true,
+                        gutter: true,
+                        fixedGutter: true,
+                        smartIndent: true,
+                        value:'asdaskldhj'
+                    };
+                Ext.apply(defaults, me.editorConfig);
+                this.setCodeEditor(CodeMirror.fromTextArea(document.getElementById(targetEl), defaults));
+                this.getCodeEditor().on('change', function(editor, e) {
+                    me.fireEvent('onContentChange', me, editor);
+                });
 
-                        }
-                }
+            }
         }
+    }
 });

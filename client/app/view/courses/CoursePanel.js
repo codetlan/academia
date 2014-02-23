@@ -17,6 +17,7 @@ Ext.define('Cursos.view.courses.CoursePanel', {
         xtype: 'container',
         region: 'center',
         layout: 'border',
+        itemId:'agendaContainer',
         items: [{
             xtype: 'video',
             region: 'center'
@@ -28,20 +29,14 @@ Ext.define('Cursos.view.courses.CoursePanel', {
         }]
     }, {
         xtype: 'tabpanel',
-        width: 600,
-        maxwidth: 800,
+        width: '55%',
+        split:true,
         region: 'east',
         collapsible: true,
         plain: true,
-        //collapsed: true,
-        title: 'Archivos Adjuntos',
-        items: [{
-            xtype: 'editorpanel',
-            title:'Grid.js'
-        },{
-            xtype: 'editorpanel',
-            title:'Panel.js'
-        }]
+        floatable: false,
+        collapsed: true,
+        title: 'Documentos de la leccion'
     }]
 
 });

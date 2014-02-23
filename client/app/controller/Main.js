@@ -22,7 +22,12 @@ Ext.define('Cursos.controller.Main', {
     }],
 
     onLaunch: function() {
+        var me = this;
         Conekta.setPublishableKey('key_MxhSqdJdtsmBy64o');
+        if (Meteor.userId()) {
+            me.getMain().layout.setActiveItem(1);
+            me.addAdminMenu();
+        }
     },
 
     init: function() {
@@ -67,15 +72,61 @@ Ext.define('Cursos.controller.Main', {
             },
             'commentslist': {
                 commentoncomment: me.addCommentOnComment
+            },
+            'mainpanel #myCourseStand coursepanel courseagendagrid': {
+                itemclick: me.onCourseAgendaItemClick
             }
         });
-        me.waitForMeteor(function() {
-            if (Meteor.userId()) {
-                me.getMain().layout.setActiveItem(1);
-                me.addAdminMenu();
-            }
+    },
+
+    onCourseAgendaItemClick: function(grid, record) {
+        var panel = grid.up('coursepanel'),
+            filesPanel = panel.down('tabpanel'),
+            files, editors = [],
+            editorPanel,
+            agendaContainer = panel.down('#agendaContainer');
+        //cargamos el video
+        agendaContainer.remove(agendaContainer.items.items[0].getItemId());
+        agendaContainer.insert(0, {
+            xtype: 'video',
+            src: record.get('video'),
+            region: 'center',
+            autoplay: 1
         });
 
+
+        // cargamos los codigos de el temario actual
+        filesPanel.removeAll(true);
+        files = Codes.find({
+            agendaId: record.get('_id')
+        }, {
+            sort: {
+                order: 1
+            }
+        }).fetch();
+
+        if (Ext.isEmpty(files)) {
+            filesPanel.setTitle('Este lección no contiene Documentos');
+            filesPanel.collapse();
+            return;
+        }
+        filesPanel.setTitle(' Documentos de la lección '+ record.get('submodule'));
+        filesPanel.expand();
+
+        Ext.each(files, function(item) {
+            editorPanel = Ext.create('Ext.ux.EditorPanel', {
+                xtype: 'editorpanel',
+                title: item.name,
+                listeners: {
+                    afterrender: function(p) {
+                        p.down('codeeditor').setValue(item.content);
+                    }
+                }
+            });
+            editors.push(editorPanel);
+        });
+        filesPanel.add(editors);
+        filesPanel.setActiveTab(0);
     },
 
     onPaymentSuccess: function(form, win, paymentObject) {
@@ -158,7 +209,7 @@ Ext.define('Cursos.controller.Main', {
                 break;
             case 'icon-ticket':
                 layout.setActiveItem(0);
-                 mainContainer.down('#myCourseStand').layout.setActiveItem(0);
+                mainContainer.down('#myCourseStand').layout.setActiveItem(0);
                 break;
             default:
                 break;
@@ -228,7 +279,6 @@ Ext.define('Cursos.controller.Main', {
     addAdminMenu: function() {
         var me = this,
             store = me.getSocialMenulist().getStore();
-
         if (Meteor.user().profile.role === "admin" && !! store.find('icon', 'icon-cog-alt')) {
             var adminMenu = Ext.create('Cursos.model.MenuItem', {
                 option: 'Administración',
@@ -253,7 +303,7 @@ Ext.define('Cursos.controller.Main', {
         setTimeout(function() {
             fn();
             body.unmask();
-        }, 900);
+        }, 500);
     },
     onSearchCourseFieldChange: function(textfield, value) {
         var me = this,
