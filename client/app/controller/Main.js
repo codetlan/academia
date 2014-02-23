@@ -216,8 +216,11 @@ Ext.define('Cursos.controller.Main', {
         }
     },
     onShowAdmin: function() {
-        var win = Ext.create('Cursos.view.admin.AdminWindow');
+        var win = Ext.create('Cursos.view.admin.AdminWindow'),
+            data;
         win.show();
+        data = Courses.find({}).fetch(); 
+        win.down('admincoursespanel').down('coursesgrid').getStore().loadData(data);
     },
     onCourseItemClick: function(view, record, item, index, e) {
         var me = this,
