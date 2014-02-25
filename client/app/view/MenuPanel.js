@@ -7,18 +7,14 @@ Ext.define('Cursos.view.MenuPanel', {
     extend: 'Ext.Panel',
     alias: 'widget.menupanel',
 
-    requires: [
-        // 'Cursos.view.MenuList'
-    ],
-
     title: 'Menu',
-    //frame: false,
-    //border: false,
 
-    width: 200,
-    maxwidth: 250,
+    width: 250,
     region: 'west',
     collapsible: true,
+    plain: true,
+    floatable: false,
+
 
     bodyCls: 'cursos-menu-panel',
     items: [{

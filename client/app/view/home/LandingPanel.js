@@ -182,6 +182,13 @@ Ext.define('Cursos.view.home.LandingPanel', {
 
             ].join('')
         }, {
+            xtype:'component',
+            style:{
+                background:'#FFF',
+                'margin-top':'-5px'
+            },
+            height:570
+        }, {
             xtype:'coursescontanier',
             templateType: 'landingPage',
             toolbarText: 'Cursos',

@@ -29,7 +29,7 @@ Ext.define('Cursos.view.courses.CoursePanel', {
         }]
     }, {
         xtype: 'tabpanel',
-        width: '55%',
+        width: '35%',
         split:true,
         region: 'east',
         collapsible: true,

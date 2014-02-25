@@ -80,7 +80,8 @@ Ext.define('Cursos.controller.Main', {
     },
 
     onCourseAgendaItemClick: function(grid, record) {
-        var panel = grid.up('coursepanel'),
+        var me = this,
+            panel = grid.up('coursepanel'),
             filesPanel = panel.down('tabpanel'),
             files, editors = [],
             editorPanel,
@@ -112,6 +113,7 @@ Ext.define('Cursos.controller.Main', {
         }
         filesPanel.setTitle(' Documentos de la lección '+ record.get('submodule'));
         filesPanel.expand();
+        me.getUserMenulist().up('menupanel').collapse();
 
         Ext.each(files, function(item) {
             editorPanel = Ext.create('Ext.ux.EditorPanel', {

@@ -2,18 +2,10 @@ Ext.define('Cursos.view.Main', {
     extend: 'Ext.panel.Panel',
     xtype: 'mainpanel',
 
-    requires: [
-        // 'Cursos.view.MenuPanel'
-    ],
     layout: 'border',
-    defaults: {
-        padding: 0.5,
-        split: false
-    },
     border: false,
     items: [{
-            xtype: 'menupanel',
-            width: 250
+            xtype: 'menupanel'
         }, {
             xtype: 'panel',
             region: 'center',
