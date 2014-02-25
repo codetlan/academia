@@ -16,7 +16,8 @@ Ext.define('Cursos.view.home.LandingPanel', {
     border: false,
     bodyStyle: {
         backgroundColor: '#FFF',
-        background: 'url(images/backgrounds/bg2.jpg)',
+        //background: 'url(images/backgrounds/bg3.jpg)',
+        background: 'url(images/backgrounds/bgg.png)',
         'background-size': '100% 100%',
         'background-repeat': 'no-repeat'
     },
@@ -185,7 +186,7 @@ Ext.define('Cursos.view.home.LandingPanel', {
             xtype:'component',
             style:{
                 background:'#FFF',
-                'margin-top':'-5px'
+                'margin-top':'-2px'
             },
             height:570
         }, {
