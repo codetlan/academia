@@ -100,12 +100,12 @@ Ext.define('Cursos.view.home.LandingPanel', {
                                     text: '<i class="icon-facebook"></i> Ingresa con  Facebook',
                                     xtype: 'button',
                                     action: 'facebook',
-                                    baseCls:'cursos-landing-panel-facebook-btn'
-                                },{
+                                    baseCls: 'cursos-landing-panel-facebook-btn'
+                                }, {
                                     text: '<i class="icon-gplus"></i> Ingresa con  Google',
                                     xtype: 'button',
                                     action: 'google',
-                                    baseCls:'cursos-landing-panel-google-btn'
+                                    baseCls: 'cursos-landing-panel-google-btn'
                                 }],
                                 listeners: {
                                     render: function(tp) {
@@ -183,17 +183,73 @@ Ext.define('Cursos.view.home.LandingPanel', {
 
             ].join('')
         }, {
-            xtype:'component',
-            style:{
-                background:'#FFF',
-                'margin-top':'-2px'
-            },
-            height:570
+            xtype: 'component',
+            height: 80,
+            html: [
+                '<div class="cursos-landing-panel-user-stories-user">',
+                '<div><img src="images/avatars/ricardo.jpeg" alt="" /></div>',
+                '<div class="cursos-landing-panel-user-stories-user-comment">',
+                '<p>"Aqui he aprendido Ext JS 4 y Sencha Touch 2 con MVC, muy recomendable!"</p>',
+                '<span>David</span>',
+                '</div>',
+                '</div>'
+            ].join(''),
+            cls: 'cursos-landing-panel-user-stories',
+            listeners: {
+                render: function(cmp) {
+                    var avatars =['ricardo.jpeg','adri.jpeg','dave.jpg'],
+                        comments = [
+                            'Aqui he aprendido Ext JS 4 y Sencha Touch 2 con MVC, muy recomendable!',
+                            'Esta plataforma es excelente, he aprendido a desarrollar aplicaciones yei!',
+                            'Ya llevo 3 cursos, el curso de configuración de servidores es lo máximo'],
+                        names =['David','Adri','Joel'],
+                        num = 0;
+
+                    setInterval(function() {
+                        num = Math.floor((Math.random()*2)+1);
+                        cmp.update([
+                            '<div class="cursos-landing-panel-user-stories-user">',
+                            '<div><img src="images/avatars/'+avatars[num]+'" alt="" /></div>',
+                            '<div class="cursos-landing-panel-user-stories-user-comment">',
+                            '<p>"'+comments[num]+'"</p>',
+                            '<span>'+names[num]+'</span>',
+                            '</div>',
+                            '</div>'
+                        ].join(''));
+                    }, 4000)
+
+                }
+            }
         }, {
-            xtype:'coursescontanier',
+            xtype: 'container',
+            style: {
+               // background: '#eaeced',
+               background: '#FFF',
+                //width: '860px',
+                //margin:'auto'
+            },
+            height: 370,
+            items: {
+                xtype: 'component',
+                style: {
+                    width: '860px',
+                    margin: 'auto'
+                },
+                html: [
+                    '<div class="cursos-landing-panel-description">',
+                    '<div class="cursos-landing-panel-description-legend">',
+                    '<h1>HIGH FIDELITY PROTOTYPING & COLLABORATION — FOR DESIGNERS, BY DESIGNERS.</h1>',
+                    '<p>Whether you need to quickly share a single mockup or demo a complex mobile app, InVision gives you the tools to show off your designs like never before.</p>',
+                    '</div>',
+                    '<div class="cursos-landing-panel-description-img"><img src="images/laptop.png" alt="" /></div>',
+                    '</div>'
+                ].join('')
+            }
+        }, {
+            xtype: 'coursescontanier',
             templateType: 'landingPage',
             toolbarText: 'Cursos',
-            height:470
+            height: 470
         }, {
             xtype: 'component',
             height: 60,
