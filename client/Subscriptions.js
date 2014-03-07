@@ -7,20 +7,20 @@ Ext.onReady(function() {
                     cursor,
                     userCoursesIds = [];
 
-                if (Meteor.userId()) { //quitamos los cursos en los que esta el usuario                    
+                // if (Meteor.userId()) { //quitamos los cursos en los que esta el usuario                    
 
-                    Ext.each(Meteor.user().profile.courses, function(course) {
-                        userCoursesIds.push(course._id);
-                    }, this);
+                //     Ext.each(Meteor.user().profile.courses, function(course) {
+                //         userCoursesIds.push(course._id);
+                //     }, this);
 
-                    cursor = Courses.find({
-                        _id: {
-                            $nin: userCoursesIds
-                        }
-                    });
-                } else {
+                //     cursor = Courses.find({
+                //         _id: {
+                //             $nin: userCoursesIds
+                //         }
+                //     });
+                // } else {
                     cursor = Courses.find({});
-                }
+                // }
                 cursor.observeChanges({
                     added: function(id, course) {
                         course['_id'] = id;

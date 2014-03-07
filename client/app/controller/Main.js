@@ -24,10 +24,13 @@ Ext.define('Cursos.controller.Main', {
     onLaunch: function() {
         var me = this;
         Conekta.setPublishableKey('key_MxhSqdJdtsmBy64o');
-        if (Meteor.userId()) {
-            me.getMain().layout.setActiveItem(1);
-            me.addAdminMenu();
-        }
+        me.waitForMeteor(function() {
+            if (Meteor.userId()) {
+                me.getMain().layout.setActiveItem(1);
+                me.addAdminMenu(Meteor.user());
+                me.setUserData();
+            }
+        });
     },
 
     init: function() {
@@ -111,7 +114,7 @@ Ext.define('Cursos.controller.Main', {
             filesPanel.collapse();
             return;
         }
-        filesPanel.setTitle(' Documentos de la lección '+ record.get('submodule'));
+        filesPanel.setTitle(' Documentos de la lección ' + record.get('submodule'));
         filesPanel.expand();
         me.getUserMenulist().up('menupanel').collapse();
 
@@ -186,7 +189,6 @@ Ext.define('Cursos.controller.Main', {
             case 'icon-video':
                 layout.setActiveItem(3);
                 mainContainer.down('#courseStand').layout.setActiveItem(0);
-                // mainContainer.down('#courseStand').down('paymentcontainer').resetShoppingCarForms();
                 break;
             case 'icon-users':
                 layout.setActiveItem(4);
@@ -221,14 +223,15 @@ Ext.define('Cursos.controller.Main', {
         var win = Ext.create('Cursos.view.admin.AdminWindow'),
             data;
         win.show();
-        data = Courses.find({}).fetch(); 
+        data = Courses.find({}).fetch();
         win.down('admincoursespanel').down('coursesgrid').getStore().loadData(data);
     },
     onCourseItemClick: function(view, record, item, index, e) {
         var me = this,
             win,
             target = e.getTarget(),
-            stand, store;
+            stand, store,
+            paymentObject;
 
         // si se trata de tomar el curso
         if (target.className == "courses-list-item-name-get-course-btn") {
@@ -246,6 +249,17 @@ Ext.define('Cursos.controller.Main', {
         }
         // si se trata de comprar el curso
         if (target.className == "courses-list-item-name-buy-course-btn") {
+
+            //si el curso es gratis
+            if(!record.get('price')){
+                paymentObject = {
+                    type:'Course',
+                    id: record.get('_id')
+                };
+                me.onPaymentSuccess(undefined, undefined,paymentObject);
+                return;
+            }
+
             stand = view.up('#courseStand');
             stand.layout.setActiveItem(1);
             stand.down('paymentcontainer').setShoppingCarData({
@@ -281,10 +295,10 @@ Ext.define('Cursos.controller.Main', {
             }
         });
     },
-    addAdminMenu: function() {
+    addAdminMenu: function(user) {
         var me = this,
             store = me.getSocialMenulist().getStore();
-        if (Meteor.user().profile.role === "admin" && !! store.find('icon', 'icon-cog-alt')) {
+        if (user.profile.role === "admin" && !! store.find('icon', 'icon-cog-alt')) {
             var adminMenu = Ext.create('Cursos.model.MenuItem', {
                 option: 'Administración',
                 icon: 'icon-cog-alt'
@@ -304,15 +318,16 @@ Ext.define('Cursos.controller.Main', {
     },
     waitForMeteor: function(fn) {
         var body = Ext.getBody();
-        body.mask('Cargando ...');
+        body.mask('Configurando ...');
         setTimeout(function() {
             fn();
             body.unmask();
-        }, 500);
+        }, 900);
     },
     onSearchCourseFieldChange: function(textfield, value) {
         var me = this,
-            store = textfield.up('coursescontanier').down('courseslist').getStore();
+            courseslist = textfield.up('coursescontanier') ? textfield.up('coursescontanier').down('courseslist') : textfield.up('landingpanel').down('courseslist');
+        store = courseslist.getStore();
 
         //TODO: the suspend/resume hack can be removed once Filtering has been updated
         store.suspendEvents();
@@ -417,5 +432,28 @@ Ext.define('Cursos.controller.Main', {
         ].join('');
 
         Ext.fly(target).up('div.cursos-comments-list-item').down('div.cursos-comments-list-item-comments').createChild(el);
+    },
+    setUserData: function() {
+        var me = this,
+            user = Meteor.user() && Meteor.user().profile,
+            mainPanel = me.getMain().down('mainpanel'),
+            userContainer = mainPanel.down('usercontainer'),
+            userObject = {
+                name: user.name,
+                avatar: user.picture
+            };
+        //seteamos los datos del profile
+        me.getMain().down('profilecontainer').update(userObject);
+        //seteamos los cursos del usuario
+        //mainPanel.down('#mainContainer').down('#myCourseStand').down('courseslist').getStore().loadData(user.courses);
+        //seteamos los datos del usuario
+        userContainer.update(userObject);
+        userContainer.updateBadges(user.badges);
+
+        mainPanel.down('usermenulist').getStore().loadData([{
+            option: 'Mis cursos',
+            icon: 'icon-ticket',
+            badge: user.courses.length
+        }]);
     }
 });

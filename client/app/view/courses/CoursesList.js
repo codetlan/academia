@@ -82,10 +82,10 @@ Ext.define('Cursos.view.courses.CoursesList', {
 					'</tpl>',
 					'<div class="x-clear"></div>'
 				];
-				me.store = {
-	                type: 'courses',
-	                data: Meteor.user() && Meteor.user().profile.courses
-	            };
+				// me.store = {
+	   //              type: 'courses',
+	   //              data: Meteor.user() && Meteor.user().profile.courses
+	   //          };
 			break;
 		}
 		return  tpl.join('');

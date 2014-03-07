@@ -144,7 +144,7 @@ Ext.define('Cursos.controller.Admin', {
     onAddOrUpdateCourse: function(btn) {
         var values = btn.up('form').getValues(),
             me = this,
-            id;
+            id, course;
         if (values['_id']) { //actualizamos el curso
             id = values['_id'];
             delete values['_id'];
@@ -153,13 +153,16 @@ Ext.define('Cursos.controller.Admin', {
             });
         } else {
             delete values['_id'];
-            Courses.insert(values);
+            values['_id'] = Courses.insert(values);
+            //course = Ext.create('Cursos.model.Course', values);
+            //me.getCoursesGridPanel().getStore().add(course);
         }
     },
     onDeleteCourse: function() {
         var records = this.getCoursesGridPanel().getSelectionModel().getSelection();
         Ext.each(records, function(record) {
             Courses.remove(record.get('_id'));
+            //this.getCoursesGridPanel().getStore().remove(record);
         }, this);
     },
     onShowAgendaFiles: function() {
