@@ -17,7 +17,6 @@ Ext.define('Cursos.view.home.LandingPanel', {
     autoScroll: true,
     bodyStyle: {
         backgroundColor: '#FFF',
-        //background: 'url(images/backgrounds/bg3.jpg)',
         background: 'url(images/backgrounds/bgg.png)',
         'background-size': '100% 100%',
         'background-repeat': 'no-repeat',
@@ -82,7 +81,7 @@ Ext.define('Cursos.view.home.LandingPanel', {
                                 target: btn.id,
                                 anchor: 'top',
                                 autoHide: false,
-                                width: 210,
+                                width: 250,
                                 anchorOffset: 30, // center the anchor on the tooltip
                                 dismissDelay: 0,
                                 showDelay: 0,
@@ -278,8 +277,19 @@ Ext.define('Cursos.view.home.LandingPanel', {
             }
         }, {
             xtype: 'component',
-            height: 60,
-            html: '<div><img src="images/logo.png" alt="" /></div><div class="cursos-landing-panel-footer-text"> © 2014 Codetlan. Todos los derechos reservados excepto que se indique lo contrario.</div>',
+            //hidden:true,
+            height: 85,
+            html: [
+                '<div>',
+                    '<div class="cursos-landing-panel-footer-social">',
+                        '<ul>',
+                            '<li><a href="https://www.facebook.com/Codetlan" target="_blank"><i class="icon-facebook"></i></a></li>',
+                            '<li><a href="https://twitter.com/Codetlan" target="_blank"><i class="icon-twitter"></i></a></li>',
+                            '<li><a href="https://github.com/codetlan" target="_blank"><i class="icon-github"></i></a></li>',
+                        '</ul>',
+                    '</div>',
+                    '<div class="cursos-landing-panel-footer-text"> Derechos reservados © 2014 Codetlan.</div>',
+                '</div>'].join(''),
             cls: 'cursos-landing-panel-footer'
         }]
     }]

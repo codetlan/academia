@@ -15,7 +15,7 @@
 		padding-right: 10px;
 		font-size: 18px;
 		letter-spacing: 1px;
-		border: 8px solid #EEE;
+		border: 2px solid #EEE;
 		border-radius: 5px;
 		text-align: center;
 		&:hover { 
@@ -134,7 +134,6 @@
 	margin-top: -5px;
 	div{
 		color: #FFF;
-		font-family: 'Exo 2', sans-serif;
 		font-family: 'PT Sans Caption', sans-serif;
 		font-size: 16px;
 	}
@@ -143,21 +142,38 @@
 .cursos-landing-panel-footer{
 	background-color: #2C3747;
 	.cursos-landing-panel-footer-text{
+		font-family: 'PT Sans Narrow', sans-serif;
+		opacity: 0.5;
+		float: right;
+		color: #FFF;
+		font-size: 18px;
+		padding: 10px;
+		margin-top: 30px;
+		margin-right: 50px;
+		letter-spacing: 1px;
+	}
+	.cursos-landing-panel-footer-social{
 		float: left;
 		color: #FFF;
-		font-size: 16px;
-		padding: 10px;
-		margin-top: 11px;
-	}
-	div{
-		float: left;
-		padding: 4px;
-		img{
-			width:48px;
-			margin-top: 2px;
-			background: #FFF;
-			border: 3px solid #FFF;
-			border-radius: 50%;
+		margin-top: 2px;
+		ul{
+			 list-style-type: none;
+			li{
+				padding: 3px;
+				float: left;
+				font-size: 14px;
+				opacity: 0.5;
+				i{
+					font-size: 52px;
+				}
+				a{
+					color: #FFF;
+				}
+				&:hover{
+					opacity: 1.0;
+					cursor: pointer;
+				}
+			}
 		}
 	}
 }
