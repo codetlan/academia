@@ -9,11 +9,21 @@ Ext.define('Cursos.view.admin.courses.AdminCoursesPanel', {
 
 	title: 'Cursos',
 
-	tbar: ['->',{
+	tbar: [{
+		text: 'Agregar Curso',
+		scale:'medium',
+		itemId:'addCourseBtn'
+	},{
+		text: 'Editar Curso',
+		scale:'medium',
+		itemId:'editCourseBtn'
+	},{
 		text: 'Ver Temario',
+		scale:'medium',
 		itemId:'showAgendaOfCourseBtn'
 	}, {
 		text: 'Eliminar',
+		scale:'medium',
 		itemId:'deleteCourseBtn'
 	}],
 
@@ -29,6 +39,7 @@ Ext.define('Cursos.view.admin.courses.AdminCoursesPanel', {
 		region: 'west',
 		width: 400,
 		collapsible:true,
+		collapsed:true,
 		maxwidth:400
 	}, {
 		xtype:'coursesgrid',

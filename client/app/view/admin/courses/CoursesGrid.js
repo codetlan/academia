@@ -28,10 +28,7 @@ Ext.define('Cursos.view.admin.courses.CoursesGrid', {
 		}
 	}],
 	title: 'Cursos',
-	//store: 'Courses',
-	store: {
-		type: 'courses'
-	},
+	store: 'Courses',
 	selModel: new Ext.selection.RowModel({
 		mode: "MULTI"
 	}),
