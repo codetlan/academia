@@ -24,11 +24,6 @@ Ext.define('Cursos.view.admin.agenda.AgendaWindow', {
 	} ,{
 		text: 'Eliminar',
 		itemId: 'deleteFromAgendaBtn'
-	},'-',{
-		text:'Cerrar Ventana',
-		handler:function (btn) {
-			btn.up('agendawindow').close();
-		}
 	}],
 
 	items: [{

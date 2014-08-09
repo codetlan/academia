@@ -14,10 +14,6 @@ Ext.define('Cursos.view.admin.courses.AdminCoursesPanel', {
 		scale:'medium',
 		itemId:'addCourseBtn'
 	},{
-		text: 'Editar Curso',
-		scale:'medium',
-		itemId:'editCourseBtn'
-	},{
 		text: 'Ver Temario',
 		scale:'medium',
 		itemId:'showAgendaOfCourseBtn'
@@ -36,11 +32,11 @@ Ext.define('Cursos.view.admin.courses.AdminCoursesPanel', {
 
 	items: [{
 		xtype: 'courseform',
-		region: 'west',
-		width: 400,
-		collapsible:true,
-		collapsed:true,
-		maxwidth:400
+		region: 'east',
+		width: 350,
+		//collapsible:true,
+		//collapsed:true,
+		//maxwidth:400
 	}, {
 		xtype:'coursesgrid',
 		region: 'center'

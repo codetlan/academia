@@ -25,6 +25,9 @@ Ext.define('Cursos.controller.Admin', {
             'admincoursespanel #deleteCourseBtn': {
                 click: me.onDeleteCourse
             },
+            'admincoursespanel #addCourseBtn': {
+                click: me.onAddCourse
+            },
             'admincoursespanel #showAgendaOfCourseBtn': {
                 click: me.onShowAgendaOfCourse
             },
@@ -55,6 +58,11 @@ Ext.define('Cursos.controller.Admin', {
             }
         });
 
+    },
+    onAddCourse: function (btn) {
+        var form = btn.up('admincoursespanel').down('courseform');
+        form.getForm().reset();
+        form.down('[name=title]').focus(false, 100);
     },
     onCourseAgendaSelect: function(grid, record, item, index, e, eOpts) {
         var form = this.getAgendaWindow().down('form');
@@ -142,7 +150,8 @@ Ext.define('Cursos.controller.Admin', {
     },
 
     onAddOrUpdateCourse: function(btn) {
-        var values = btn.up('form').getValues(),
+        var form = btn.up('form'),
+            values = form.getValues(),
             me = this,
             id, course;
         if (values['_id']) { //actualizamos el curso
@@ -154,16 +163,18 @@ Ext.define('Cursos.controller.Admin', {
         } else {
             delete values['_id'];
             values['_id'] = Courses.insert(values);
-            //course = Ext.create('Cursos.model.Course', values);
-            //me.getCoursesGridPanel().getStore().add(course);
         }
+
+        form.getForm().reset();
     },
-    onDeleteCourse: function() {
-        var records = this.getCoursesGridPanel().getSelectionModel().getSelection();
+    onDeleteCourse: function(btn) {
+        var me = this,
+            records = me.getCoursesGridPanel().getSelectionModel().getSelection();
         Ext.each(records, function(record) {
             Courses.remove(record.get('_id'));
-            //this.getCoursesGridPanel().getStore().remove(record);
-        }, this);
+        });
+        btn.up('admincoursespanel').down('courseform').getForm().reset();
+
     },
     onShowAgendaFiles: function() {
         var me = this,

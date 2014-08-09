@@ -29,7 +29,7 @@ Ext.define('Cursos.view.courses.CommentComponent', {
             xtype: 'textarea',
             title: 'Comentarios',
             width: '99%',
-            emptyText: 'Agregar comentario al usuario ...',
+            emptyText: 'Escribe tu comentario ...',
             style: {
                 'margin': 'auto'
             }
@@ -44,7 +44,7 @@ Ext.define('Cursos.view.courses.CommentComponent', {
                 //     tooltip:'Subir imagen'
                 // },
                 {
-                    text: '<i class="icon-comment"></i>Comentar',
+                    text: 'Comentar',
                     tooltip: 'Dejar comentario',
                     handler: function(btn) {
                         var component = btn.up('commentcomponent'),

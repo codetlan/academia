@@ -288,6 +288,7 @@ Ext.define('Cursos.controller.Main', {
     onLoginUser: function(btn) {
         var me = this;
         Meteor.loginWithGoogle(function(err) {
+            console.log(arguments);
             if (err) {
                 Ext.Msg.alert('Error', 'No pudimos iniciar sesión intentalo de nuevo :)');
             } else {

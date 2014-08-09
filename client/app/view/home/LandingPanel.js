@@ -6,10 +6,7 @@
 Ext.define('Cursos.view.home.LandingPanel', {
     extend: 'Ext.Panel',
     alias: 'widget.landingpanel',
-    requires: [
-        'Cursos.view.courses.CoursesList'
-    ],
-
+    requires: ['Cursos.view.courses.CoursesList'],
     layout: {
         type: 'border'
     },
@@ -76,15 +73,22 @@ Ext.define('Cursos.view.home.LandingPanel', {
                     baseCls: 'cursos-landing-panel-toolbar-button',
                     text: 'Empezar',
                     listeners: {
-                        render: function(btn) {
-                            btn.toolTip = Ext.create('Ext.tip.ToolTip', {
-                                target: btn.id,
-                                anchor: 'top',
-                                autoHide: false,
+                        click: function(btn) {
+                            console.log(arguments);
+                            /*if(btn.toolTip){
+                                 btn.toolTip.show();
+                            }    */
+                            Ext.create('Ext.Window', {
                                 width: 250,
-                                anchorOffset: 30, // center the anchor on the tooltip
-                                dismissDelay: 0,
-                                showDelay: 0,
+                                height: 110,
+                                resizable: false,
+                                border: false,
+                                shadow: false,
+                                baseCls: '',
+                                modal: true,
+                                closable: false,
+                                draggable: false,
+                                padding: 5,
                                 layout: {
                                     type: 'vbox',
                                     align: 'stretch'
@@ -109,22 +113,15 @@ Ext.define('Cursos.view.home.LandingPanel', {
                                     baseCls: 'cursos-landing-panel-google-btn'
                                 }],
                                 listeners: {
-                                    render: function(tp) {
-                                        tp.getEl().on('mouseout', function(event) {
-                                            var position = tp.getPosition(),
-                                                componentWidth = tp.getSize().width,
-                                                componentHeight = tp.getSize().height,
-                                                eventPosition = event.getXY();
-
-                                            if (eventPosition[0] > (position[0] + componentWidth) || eventPosition[0] < position[0] ||
-                                                eventPosition[1] > (position[1] + componentHeight) || eventPosition[1] < position[1]) {
-                                                tp.hide();
-                                            }
+                                    show: function(win) {
+                                        Ext.select('.x-mask').addListener('click', function() {
+                                            win.close();
                                         });
                                     }
                                 }
-                            });
-                        }
+                            }).show();
+                        },
+                        
                     }
                 }, {
                     xtype: 'component',
@@ -133,91 +130,22 @@ Ext.define('Cursos.view.home.LandingPanel', {
             }]
         }, {
             xtype: 'container',
-            html: [
-                '<div class="cursos-landing-panel-poster-legend">¡APRENDE las mejores tecnologías Y CREA tus propias aplicaciones!</div>',
-
-                '<div class="cursos-landing-panel-poster">',
-                '<div class="cursos-landing-panel-poster-icon-top">',
-                '<img src="images/tecnologies/php.png">',
-                '</div>',
-                '<div class="cursos-landing-panel-poster-icon-top">',
-                '<img src="images/tecnologies/css3.png">',
-                '</div>',
-                '<div class="cursos-landing-panel-poster-icon-top">',
-                '<img src="images/tecnologies/js.png">',
-                '</div>',
-                '<div class="cursos-landing-panel-poster-icon-top">',
-                '<img src="images/tecnologies/java.png">',
-                '</div>',
-
-                '<div class="cursos-landing-panel-poster-icon-middle-push-left">',
-                '<img src="images/tecnologies/nodejs.png">',
-                '</div>',
-                '<div class="cursos-landing-panel-poster-icon-middle">',
-                '<img src="images/tecnologies/rails.png">',
-                '</div>',
-                '<div class="cursos-landing-panel-poster-icon-middle">',
-                '<img src="images/tecnologies/meteor.png">',
-                '</div>',
-                '<div class="cursos-landing-panel-poster-icon-middle">',
-                '<img src="images/tecnologies/laravel2.png">',
-                '</div>',
-                '<div class="cursos-landing-panel-poster-icon-middle-push-right">',
-                '<img src="images/tecnologies/sencha.png">',
-                '</div>',
-
-                '<div class="cursos-landing-panel-poster-icon-bottom">',
-                '<img src="images/tecnologies/github.png">',
-                '</div>',
-                '<div class="cursos-landing-panel-poster-icon-bottom">',
-                '<img src="images/tecnologies/angular.png">',
-                '</div>',
-                '<div class="cursos-landing-panel-poster-icon-bottom">',
-                '<img src="images/tecnologies/backbone.png">',
-                '</div>',
-                '<div class="cursos-landing-panel-poster-icon-bottom">',
-                '<img src="images/tecnologies/ember.png">',
-                '</div>',
-                '</div>',
-                '<div style="clear:both"></div>'
-            ].join('')
+            html: ['<div class="cursos-landing-panel-poster-legend">¡APRENDE las mejores tecnologías Y CREA tus propias aplicaciones!</div>', '<div class="cursos-landing-panel-poster">', '<div class="cursos-landing-panel-poster-icon-top">', '<img src="images/tecnologies/php.png">', '</div>', '<div class="cursos-landing-panel-poster-icon-top">', '<img src="images/tecnologies/css3.png">', '</div>', '<div class="cursos-landing-panel-poster-icon-top">', '<img src="images/tecnologies/js.png">', '</div>', '<div class="cursos-landing-panel-poster-icon-top">', '<img src="images/tecnologies/java.png">', '</div>', '<div class="cursos-landing-panel-poster-icon-middle-push-left">', '<img src="images/tecnologies/nodejs.png">', '</div>', '<div class="cursos-landing-panel-poster-icon-middle">', '<img src="images/tecnologies/rails.png">', '</div>', '<div class="cursos-landing-panel-poster-icon-middle">', '<img src="images/tecnologies/meteor.png">', '</div>', '<div class="cursos-landing-panel-poster-icon-middle">', '<img src="images/tecnologies/laravel2.png">', '</div>', '<div class="cursos-landing-panel-poster-icon-middle-push-right">', '<img src="images/tecnologies/sencha.png">', '</div>', '<div class="cursos-landing-panel-poster-icon-bottom">', '<img src="images/tecnologies/github.png">', '</div>', '<div class="cursos-landing-panel-poster-icon-bottom">', '<img src="images/tecnologies/angular.png">', '</div>', '<div class="cursos-landing-panel-poster-icon-bottom">', '<img src="images/tecnologies/backbone.png">', '</div>', '<div class="cursos-landing-panel-poster-icon-bottom">', '<img src="images/tecnologies/ember.png">', '</div>', '</div>', '<div style="clear:both"></div>'].join('')
         }, {
             xtype: 'component',
             height: 80,
-            html: [
-                '<div class="cursos-landing-panel-user-stories-user">',
-                '<div><img src="images/avatars/ricardo.jpeg" alt="" /></div>',
-                '<div class="cursos-landing-panel-user-stories-user-comment">',
-                '<p>"Aqui he aprendido Ext JS 4 y Sencha Touch 2 con MVC, muy recomendable!"</p>',
-                '<span>David</span>',
-                '</div>',
-                '</div>'
-            ].join(''),
+            html: ['<div class="cursos-landing-panel-user-stories-user">', '<div><img src="images/avatars/ricardo.jpeg" alt="" /></div>', '<div class="cursos-landing-panel-user-stories-user-comment">', '<p>"Aqui he aprendido Ext JS 4 y Sencha Touch 2 con MVC, muy recomendable!"</p>', '<span>David</span>', '</div>', '</div>'].join(''),
             cls: 'cursos-landing-panel-user-stories',
             listeners: {
                 render: function(cmp) {
                     var avatars = ['ricardo.jpeg', 'adri.jpeg', 'dave.jpg'],
-                        comments = [
-                            'Aqui he aprendido Ext JS 4 y Sencha Touch 2 con MVC, muy recomendable!',
-                            'Esta plataforma es excelente, he aprendido a desarrollar aplicaciones yei!',
-                            'Ya llevo 3 cursos, el curso de configuración de servidores es lo máximo'
-                        ],
+                        comments = ['Aqui he aprendido Ext JS 4 y Sencha Touch 2 con MVC, muy recomendable!', 'Esta plataforma es excelente, he aprendido a desarrollar aplicaciones yei!', 'Ya llevo 3 cursos, el curso de configuración de servidores es lo máximo'],
                         names = ['David', 'Adri', 'Joel'],
                         num = 0;
-
                     setInterval(function() {
                         num = Math.floor((Math.random() * 3));
-                        cmp.update([
-                            '<div class="cursos-landing-panel-user-stories-user">',
-                            '<div><img src="images/avatars/' + avatars[num] + '" alt="" /></div>',
-                            '<div class="cursos-landing-panel-user-stories-user-comment">',
-                            '<p>"' + comments[num] + '"</p>',
-                            '<span>' + names[num] + '</span>',
-                            '</div>',
-                            '</div>'
-                        ].join(''));
+                        cmp.update(['<div class="cursos-landing-panel-user-stories-user">', '<div><img src="images/avatars/' + avatars[num] + '" alt="" /></div>', '<div class="cursos-landing-panel-user-stories-user-comment">', '<p>"' + comments[num] + '"</p>', '<span>' + names[num] + '</span>', '</div>', '</div>'].join(''));
                     }, 4000)
-
                 }
             }
         }, {
@@ -232,15 +160,7 @@ Ext.define('Cursos.view.home.LandingPanel', {
                     width: '860px',
                     margin: 'auto'
                 },
-                html: [
-                    '<div class="cursos-landing-panel-description">',
-                    '<div class="cursos-landing-panel-description-legend">',
-                    '<h1>APRENDE LAS MEJORES TECNOLOGÍAS - EN ESPAÑOL</h1>',
-                    '<p>En Academia Codetlan aprenderás las mejores tecnologías para desarrollar tus propias aplicaciones, con los mejores instructores.</p>',
-                    '</div>',
-                    '<div class="cursos-landing-panel-description-img"><img src="images/laptop2.png" alt="" /></div>',
-                    '</div>'
-                ].join('')
+                html: ['<div class="cursos-landing-panel-description">', '<div class="cursos-landing-panel-description-legend">', '<h1>APRENDE LAS MEJORES TECNOLOGÍAS - EN ESPAÑOL</h1>', '<p>En Academia Codetlan aprenderás las mejores tecnologías para desarrollar tus propias aplicaciones, con los mejores instructores.</p>', '</div>', '<div class="cursos-landing-panel-description-img"><img src="images/laptop2.png" alt="" /></div>', '</div>'].join('')
             }]
         }, {
             xtype: 'container',
@@ -277,19 +197,8 @@ Ext.define('Cursos.view.home.LandingPanel', {
             }
         }, {
             xtype: 'component',
-            //hidden:true,
-            height: 85,
-            html: [
-                '<div>',
-                    '<div class="cursos-landing-panel-footer-social">',
-                        '<ul>',
-                            '<li><a href="https://www.facebook.com/Codetlan" target="_blank"><i class="icon-facebook"></i></a></li>',
-                            '<li><a href="https://twitter.com/Codetlan" target="_blank"><i class="icon-twitter"></i></a></li>',
-                            '<li><a href="https://github.com/codetlan" target="_blank"><i class="icon-github"></i></a></li>',
-                        '</ul>',
-                    '</div>',
-                    '<div class="cursos-landing-panel-footer-text"> Derechos reservados © 2014 Codetlan.</div>',
-                '</div>'].join(''),
+            height: 60,
+            html: ['<div>', '<div class="cursos-landing-panel-footer-social">', '<ul>', '<li><a href="https://www.facebook.com/Codetlan" target="_blank"><i class="icon-facebook"></i></a></li>', '<li><a href="https://twitter.com/Codetlan" target="_blank"><i class="icon-twitter"></i></a></li>', '<li><a href="https://github.com/codetlan" target="_blank"><i class="icon-github"></i></a></li>', '</ul>', '</div>', '<div class="cursos-landing-panel-footer-text"> Derechos reservados © 2014 Codetlan.</div>', '</div>'].join(''),
             cls: 'cursos-landing-panel-footer'
         }]
     }]

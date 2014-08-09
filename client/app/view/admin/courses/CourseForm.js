@@ -22,21 +22,21 @@ Ext.define('Cursos.view.admin.courses.CourseForm', {
         allowBlank: true
     }, {
         name: 'title',
-        value: 'Rails',
+        //value: 'Rails',
         emptyText: 'nombre del curso'
     }, {
         xtype: 'textareafield',
         name: 'description',
-        value: 'Este es un curso basico de rails',
+        //value: 'Este es un curso basico de rails',
         height: 100,
         emptyText: 'Descripcion del curso'
     }, {
         name: 'price',
-        value: 25,
+        //value: 25,
         emptyText: 'Precio del curso'
     }, {
         name: 'user_id',
-        value: 'Armando',
+        //value: 'Armando',
         emptyText: 'Instructor'
     }, {
         name: 'image',
