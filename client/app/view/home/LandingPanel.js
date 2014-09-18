@@ -74,10 +74,6 @@ Ext.define('Cursos.view.home.LandingPanel', {
                     text: 'Empezar',
                     listeners: {
                         click: function(btn) {
-                            console.log(arguments);
-                            /*if(btn.toolTip){
-                                 btn.toolTip.show();
-                            }    */
                             Ext.create('Ext.Window', {
                                 width: 250,
                                 height: 110,
